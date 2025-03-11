@@ -1,9 +1,9 @@
 package com.fastevent;
 
-import com.fastevent.views.LoginIU;
+import com.fastevent.views.SplashScreen;
 
 public class FastEventMain {
     public static void main(String[] args) {
-        LoginIU.launch(LoginIU.class, args);
+        SplashScreen.launch(SplashScreen.class, args);
     }
 }
