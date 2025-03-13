@@ -5,7 +5,7 @@
 }
 
 .Contentpane{
-    -fx-background-image: url("/inspirations/splashScreenimage.png");
+    -fx-background-image: url("/interfaceImages/splashScreenimage.png");
     -fx-background-size: cover;
     -fx-background-position: center;
 }

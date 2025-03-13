@@ -11,7 +11,6 @@ public class Register {
     public static String pathToJson = "project/src/main/java/com/fastevent/Model/users.json";
 
     public static void registerField(String name, String password) {
-
         try {
             // creamos el diseño del json_users
             JsonArray listOfUsers = new JsonArray();
