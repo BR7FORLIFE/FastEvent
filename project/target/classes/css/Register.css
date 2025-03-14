@@ -27,8 +27,17 @@
     -fx-border-color: #3420205d; 
     -fx-border-width: 8px; 
     -fx-border-radius: 20px; 
-    -fx-font-size: 20px;
+    -fx-font-size: 13px;
     -fx-font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     -fx-text-fill: white;
     -fx-padding: 10px; 
+}
+
+.button{
+    -fx-background-color: rgb(0, 0, 0);
+    -fx-border-width: 8px;
+    -fx-border-radius: 12px;
+    -fx-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    -fx-font-size: 15px;
+    -fx-text-fill: rgb(109, 109, 109);
 }

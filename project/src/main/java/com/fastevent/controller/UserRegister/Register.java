@@ -16,11 +16,14 @@ public class Register {
             JsonArray listOfUsers = new JsonArray();
             JsonObject users = new JsonObject();
 
+            //añadimos sus respectivas propiedades
             users.addProperty("name:", name);
             users.addProperty("password:", password);
 
+            //añadimos el objeto al JsonArray
             listOfUsers.add(users);
 
+            //escribimos el contenido en el fichero con identaciones de json
             try (FileWriter writer = new FileWriter(pathToJson)) {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 JsonObject root = new JsonObject();

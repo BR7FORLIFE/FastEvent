@@ -1,9 +1,16 @@
 package com.fastevent.views;
 
-import javafx.application.Application;
+import java.io.FileWriter;
+
+import com.fastevent.controller.UserRegister.Register;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -11,7 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class RegisterIU extends Application{
+public class RegisterIU {
     public void start(Stage primaryStage){
         //obtenemos la hoja de estilos
         String cssPath = getClass().getResource("/css/Register.css").toExternalForm();
@@ -20,13 +27,14 @@ public class RegisterIU extends Application{
         Label title = new Label("Registrarse");
         TextField username = new TextField();
         PasswordField password = new PasswordField();
+        Button submitButton = new Button("Registrarse!");
 
         //placeholders 
-        username.setPromptText("Username ej: Bryan");
+        username.setPromptText("Username");
         password.setPromptText("password");
 
         //nodos para diseñar el layout del register
-        VBox vBoxNodes = new VBox(title,username, password);
+        VBox vBoxNodes = new VBox(title,username, password,submitButton);
         VBox vBoxImage = new VBox();
         
         //establecemos ancho y alto de cada contenedor
@@ -40,16 +48,27 @@ public class RegisterIU extends Application{
         username.setMaxWidth(350);
         password.setMaxWidth(350);
         VBox.setMargin(username, new Insets(25,0,25,0));
+        VBox.setMargin(submitButton, new Insets(30,0,0,0));
 
         //estilos a los nodos
         title.getStyleClass().add("titleRegister");
         username.getStyleClass().add("fields");
         password.getStyleClass().add("fields");
+        submitButton.getStyleClass().add("button");
 
         //estilos de los contenedores
         vBoxNodes.getStyleClass().add("rightAside");
         vBoxImage.getStyleClass().add("leftAside");
         
+        //eventos para el boton de submit
+        submitButton.setOnAction(event->{
+            String usernameUser = username.getText();
+            String passwordUser = password.getText();
+            username.setDisable(true);
+            password.setDisable(true);
+            Register.registerField(usernameUser, passwordUser);
+        });
+
         //usamos un grid para organizar el contenido en 2 sections
         GridPane gridPane = new GridPane();
         gridPane.add(vBoxImage, 0, 0);
@@ -64,5 +83,16 @@ public class RegisterIU extends Application{
         primaryStage.setTitle("FastEvent - Register");
         primaryStage.setResizable(false);
         primaryStage.show();
+
+        //hacer un reset en el modelo de users
+        primaryStage.setOnCloseRequest(event -> {
+            JsonObject emptyJson = new JsonObject();
+            try (FileWriter fileWriter = new FileWriter(Register.pathToJson)) {
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                gson.toJson(emptyJson, fileWriter);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
