@@ -3,10 +3,13 @@ package com.fastevent.views;
 import java.io.FileWriter;
 
 import com.fastevent.controller.UserRegister.Register;
+import com.fastevent.views.components.CssRoutes;
+import com.fastevent.views.components.nextFrame;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
+import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,11 +21,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class RegisterIU {
+public class RegisterIU extends Application{
     public void start(Stage primaryStage){
-        //obtenemos la hoja de estilos
-        String cssPath = getClass().getResource("/css/Register.css").toExternalForm();
-
+        //obtenemos la hoja de estilos para RegisterIU
+        CssRoutes cssRoute = new CssRoutes();
+        
         //campos para el formulario
         Label title = new Label("Registrarse");
         TextField username = new TextField();
@@ -67,6 +70,7 @@ public class RegisterIU {
             username.setDisable(true);
             password.setDisable(true);
             Register.registerField(usernameUser, passwordUser);
+            nextFrame.nextFrameDuration(primaryStage,LoginIU.class,1);
         });
 
         //usamos un grid para organizar el contenido en 2 sections
@@ -76,7 +80,7 @@ public class RegisterIU {
 
         //creamos la escena
         Scene scene = new Scene(gridPane);
-        scene.getStylesheets().add(cssPath);
+        scene.getStylesheets().add(cssRoute.register_loginCss);
 
         //establecemos la escena y mostramos en la ventana
         primaryStage.setScene(scene);

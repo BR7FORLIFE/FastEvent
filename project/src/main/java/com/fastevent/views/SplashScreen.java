@@ -1,8 +1,10 @@
 package com.fastevent.views;
 
+import com.fastevent.views.components.CssRoutes;
+import com.fastevent.views.components.nextFrame;
+
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
-import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,12 +16,8 @@ import javafx.util.Duration;
 public class SplashScreen extends Application { 
     @Override  
     public void start(Stage primaryStage) {
-        //creamos un stage para el registro de usuarios y instanciamos la clase RegisterIU
-        Stage registerStage = new Stage();
-        RegisterIU registerIU = new RegisterIU();
-
-        //accedemos al css correspondiente a la pantalla de carga
-        String cssPath = getClass().getResource("/css/SplashSreen.css").toExternalForm();
+        //accedemos al css correspondiente a la pantalla de carga splashScreen
+        CssRoutes cssRoute = new CssRoutes();
         
         //creamos un label para simular la carga
         Label cargando = new Label("Cargando...");
@@ -48,7 +46,7 @@ public class SplashScreen extends Application {
 
         //añadimos el css a toda la scena en general
         Scene scene = new Scene(pane, 800, 600);
-        scene.getStylesheets().add(cssPath);
+        scene.getStylesheets().add(cssRoute.splashScreenCss);
 
         //mostramos y lanzamos la aplicacion
         primaryStage.setScene(scene);
@@ -56,13 +54,6 @@ public class SplashScreen extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        //esperara 3 segundos y finalizara el proceso del splash y empezara el de register
-        PauseTransition delayToNextFrame = new PauseTransition(Duration.seconds(3));
-        delayToNextFrame.setOnFinished(event ->{
-            primaryStage.close();
-            registerIU.start(registerStage);
-        });
-
-        delayToNextFrame.play();
+        nextFrame.nextFrameDuration(primaryStage, RegisterIU.class,3);
     }
 }
