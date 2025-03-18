@@ -1,0 +1,24 @@
+/* contedores */
+
+.leftAside{
+    -fx-background-color: green;
+}
+
+.scrollPublication{
+    -fx-background-image: url("/interfaceImages/LogoProject.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.header{
+   -fx-background-color: black;
+}
+
+
+
+/* header */
+.headerImage{
+    -fx-background-image: url("/interfaceImages/LogoProject.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
