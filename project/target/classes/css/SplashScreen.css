@@ -1,0 +1,18 @@
+@font-face {
+    font-family: kanit;
+    src: url(../fonts/Kanit-Regular.ttf);
+    font-weight: 400;
+}
+
+.imageFont {
+    -fx-background-image: url("../images/splashScreenEsquineroIzq2.png");
+    -fx-background-position: center;
+    -fx-background-size: cover;
+}
+
+.charge{
+    -fx-font-size: 20px;
+    -fx-font-family: kanit,Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    -fx-font-style: normal;
+    -fx-text-fill: white;
+}
