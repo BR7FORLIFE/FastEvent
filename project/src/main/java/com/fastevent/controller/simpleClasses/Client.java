@@ -8,6 +8,14 @@ public class Client extends Person {
         super(name, lastName, age, cellphone, email);
     }
 
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getUser() {
         return user;
     }
