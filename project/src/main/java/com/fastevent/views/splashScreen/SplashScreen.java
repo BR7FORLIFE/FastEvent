@@ -91,5 +91,6 @@ public class SplashScreen extends Application {
         SplashScreenStage.setResizable(false);
         SplashScreenStage.setScene(scene);
         SplashScreenStage.show();
+
     }
 }
