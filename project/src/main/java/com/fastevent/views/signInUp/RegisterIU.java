@@ -49,10 +49,13 @@ public class RegisterIU extends Application {
         inputAge.setPromptText("Escribe tu edad");
         inputEmail.setPromptText("Escriba su correo");
         inputCellPhone.setPromptText("Escriba su teléfono");
-        gender.getItems().addAll("masculino", "femenino");
+        gender.getItems().addAll("genero...","masculino", "femenino");
         inputUser.setPromptText("Escriba un nombre de usuario");
         inputPassword.setPromptText("Escriba una contraseña");
         inputConfirmPassword.setPromptText("Confirme su contraseña");
+
+        gender.setValue("genero...");
+        gender.setMinWidth(200);
 
         // contenedores
         GridPane inputsContentBox = new GridPane();
@@ -70,8 +73,28 @@ public class RegisterIU extends Application {
         inputsContentBox.add(inputUser, 0, 2);
         inputsContentBox.add(inputPassword, 1, 2);
         inputsContentBox.add(inputConfirmPassword, 2, 2);
-        inputsContentBox.add(buttonRegister, 0, 3, 3, 1); 
+        inputsContentBox.add(buttonRegister, 1, 3, 3, 1); 
 
+        inputsContentBox.setAlignment(Pos.CENTER);
+        inputsContentBox.setHgap(50);
+        inputsContentBox.setVgap(30);
+
+        buttonRegister.getStyleClass().add("button");
+
+        //estilos de los inputs
+        inputName.getStyleClass().add("inputForm");
+        inputLastname.getStyleClass().add("inputForm");
+        inputAge.getStyleClass().add("inputForm");
+        inputEmail.getStyleClass().add("inputForm");
+        inputCellPhone.getStyleClass().add("inputForm");
+        gender.getStyleClass().add("inputForm");
+        inputEmail.getStyleClass().add("inputForm");
+        inputUser.getStyleClass().add("inputForm");
+        inputPassword.getStyleClass().add("inputForm");
+        inputConfirmPassword.getStyleClass().add("inputForm");
+
+        GridPane.setMargin(buttonRegister, new Insets(0,0,0,40));
+        
         //ancho y alto del grid
         inputsContentBox.setMaxWidth(1000);
         inputsContentBox.setMinHeight(300);

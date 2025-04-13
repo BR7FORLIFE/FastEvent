@@ -5,7 +5,36 @@
 .grid{
     -fx-background-color: white;
     -fx-border-width: 2px;
-    -fx-border-color: black;
+    -fx-border-color: rgb(4, 213, 213);
     -fx-border-style:solid;
     -fx-padding: 20px 30px;
+    -fx-border-radius: 6px;
+}
+
+.inputForm{
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-font-family: fantasy;
+    -fx-border-radius: 6px;
+    -fx-border-color: rgb(87, 87, 87);
+    -fx-border-width: 3px;
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.inputForm:focused{
+    -fx-border-color: rgb(13, 53, 210);
+}
+
+.button{
+    -fx-background-color: #0077ff;
+    -fx-font-size: 12px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: white;
+}
+
+.button:hover{
+    -fx-background-color:#4a9fff;
 }
