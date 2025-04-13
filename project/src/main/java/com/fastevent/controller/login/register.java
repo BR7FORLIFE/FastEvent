@@ -2,7 +2,6 @@ package com.fastevent.controller.login;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.fastevent.constants.PathConst;
 import com.fastevent.controller.simpleClasses.Client;
@@ -20,7 +19,8 @@ import javafx.scene.control.TextField;
 public class Register {
     private static PathConst pathConst = new PathConst();
 
-    private Register(){}
+    private Register() {
+    }
 
     @SuppressWarnings("unchecked")
     public static void setInformationForClassUser(Control... informations) {
@@ -46,7 +46,7 @@ public class Register {
             ArrayList<Client> listOfUsers = new ArrayList<>();
             listOfUsers.add(client);
             // escribimos el contenido en el fichero con identaciones de json
-            try (FileWriter writer = new FileWriter(pathConst.userJSon)) {
+            try (FileWriter writer = new FileWriter(pathConst.getUserJSon())) {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 JsonObject root = new JsonObject();
                 JsonElement usersJson = gson.toJsonTree(listOfUsers); // aca convertimos de ArrayList a JsonElement:)

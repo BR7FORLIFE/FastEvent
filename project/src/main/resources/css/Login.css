@@ -1,0 +1,47 @@
+.pane{
+    -fx-background-image: url(../images/esquinero.png);
+    -fx-background-position: center;
+    -fx-background-size: cover;
+}
+
+.vbox{
+    -fx-background-color: white;
+    -fx-border-radius: 5px;
+    -fx-border-width: 3px;
+    -fx-border-color: white;
+}
+
+.title{
+    -fx-font-size: 30px;
+    -fx-font-weight: 800;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    -fx-text-fill: rgb(0, 0, 0);
+}
+
+.inputForm{
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-font-family: fantasy;
+    -fx-border-radius: 9px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-border-width: 3px;
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.inputForm:focused{
+    -fx-border-color: rgb(13, 53, 210);
+}
+
+.button{
+    -fx-background-color: #0077ff;
+    -fx-font-size: 12px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: white;
+}
+
+.button:hover{
+    -fx-background-color:#4a9fff;
+}

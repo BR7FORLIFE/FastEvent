@@ -25,7 +25,7 @@ public class RegisterIU extends Application {
     @Override
     public void start(Stage registerStage) {
         // contenedor y imagen (logo)
-        Image image = new Image(pathConst.getPathToLogo());
+        Image image = new Image(pathConst.getLogoFastEvent());
         ImageView logo = new ImageView(image);
         logo.setFitWidth(450);// ajustar el ancho de la imagen
         logo.setFitHeight(450);// ajustar el alto de la imagen
@@ -34,7 +34,7 @@ public class RegisterIU extends Application {
         // inputs del formulario
         TextField inputName = new TextField();
         TextField inputLastname = new TextField();
-        Spinner<Integer> inputAge = new Spinner<>(0,85,0);
+        Spinner<Integer> inputAge = new Spinner<>(0, 85, 0);
         TextField inputEmail = new TextField();
         TextField inputCellPhone = new TextField();
         ChoiceBox<String> gender = new ChoiceBox<>();// para los generos masculino y femenino
@@ -56,10 +56,10 @@ public class RegisterIU extends Application {
         inputPassword.setPromptText("Escriba una contraseña");
         inputConfirmPassword.setPromptText("Confirme su contraseña");
 
-        gender.setValue("genero...");//valor por defecto del choicebox
+        gender.setValue("genero...");// valor por defecto del choicebox
         gender.setMinWidth(200);
 
-        inputAge.setEditable(true);//puede editar el valor del spinner
+        inputAge.setEditable(true);// puede editar el valor del spinner
         inputAge.setMinWidth(200);
 
         // contenedores
@@ -112,12 +112,12 @@ public class RegisterIU extends Application {
         // clases css para los contenedores y la escena
         contentBox.getStyleClass().add("contentbox");
         inputsContentBox.getStyleClass().add("grid");
-        scene.getStylesheets().add(pathConst.getPathToRegisterIU());
+        scene.getStylesheets().add(pathConst.getRegisterCss());
 
         // evento del boton
         buttonRegister.setOnAction(e -> {
             Register.setInformationForClassUser(inputName, inputLastname, inputAge, inputEmail, inputCellPhone,
-                    gender,inputUser, inputPassword, inputConfirmPassword);
+                    gender, inputUser, inputPassword, inputConfirmPassword);
         });
 
         // configuración del stage

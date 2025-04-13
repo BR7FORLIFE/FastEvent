@@ -19,7 +19,7 @@ public class Login {
 
     private static void userField(String userCredential , String passwordCredential) {
 
-        try (FileReader reader = new FileReader(Login.pathConst.userJSon)) {
+        try (FileReader reader = new FileReader(pathConst.getUserJSon())) {
             Gson gson = new Gson();
             JsonObject root = gson.fromJson(reader, JsonObject.class);
 

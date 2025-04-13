@@ -24,10 +24,10 @@ public class SplashScreen extends Application {
     @Override
     public void start(Stage SplashScreenStage) {
         // video player media and mediaplayer || image and imageview
-        Media video = new Media(pathConst.getPathVideo());
+        Media video = new Media(pathConst.getVideoSplashScreen());
         MediaPlayer mediaPlayerVideo = new MediaPlayer(video);
 
-        Image image = new Image(pathConst.getPathToLogo());
+        Image image = new Image(pathConst.getLogoFastEvent());
         ImageView imageView = new ImageView(image);
 
         // nodos
@@ -58,7 +58,7 @@ public class SplashScreen extends Application {
 
         // scenes
         Scene scene = new Scene(videoStackpane);
-        scene.getStylesheets().add(pathConst.getPathToSplashScreenCss());
+        scene.getStylesheets().add(pathConst.getSplashScreenCSs());
 
         // configuracion de nodos y escenas
         mediaPlayerVideo.setAutoPlay(true);
