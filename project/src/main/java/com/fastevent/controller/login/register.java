@@ -19,10 +19,8 @@ import javafx.scene.control.TextField;
 
 public class Register {
     private static PathConst pathConst = new PathConst();
-    private static HashMap<String, Object> informationsForUser = new HashMap<>();
 
-    private Register() {
-    }
+    private Register(){}
 
     @SuppressWarnings("unchecked")
     public static void setInformationForClassUser(Control... informations) {
@@ -36,27 +34,17 @@ public class Register {
         String password = ((PasswordField) informations[7]).getText();
         String confirmPassword = ((PasswordField) informations[8]).getText();
 
-        informationsForUser.put("name: ", name);
-        informationsForUser.put("lastName: ", lastName);
-        informationsForUser.put("age: ", age);
-        informationsForUser.put("email: ", email);
-        informationsForUser.put("cellphone: ", cellphone);
-        informationsForUser.put("genero", gender);
-        informationsForUser.put("usuario: ", user);
-        informationsForUser.put("password: ", password);
-        informationsForUser.put("confirmPassword: ", confirmPassword);
-
         Client client = new Client(name, lastName, age, cellphone, gender, email);
         client.setUser(user);
         client.setPassword(password);
 
-        registerField(informationsForUser);
+        registerField(client);
     }
 
-    private static void registerField(HashMap<String, Object> informationsForUser) {
+    private static void registerField(Client client) {
         try {
-            ArrayList<HashMap<String, Object>> listOfUsers = new ArrayList<>();
-            listOfUsers.add(informationsForUser);
+            ArrayList<Client> listOfUsers = new ArrayList<>();
+            listOfUsers.add(client);
             // escribimos el contenido en el fichero con identaciones de json
             try (FileWriter writer = new FileWriter(pathConst.userJSon)) {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
