@@ -4,8 +4,8 @@ public class Client extends Person {
     private String user;
     private String password;
 
-    public Client(String name, String lastName, int age, Long cellphone, String email) {
-        super(name, lastName, age, cellphone, email);
+    public Client(String name, String lastName, Integer age, String cellphone, String gender ,String email) {
+        super(name, lastName, age, cellphone, gender ,email);
     }
 
     public void setUser(String user) {

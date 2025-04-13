@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,7 +34,7 @@ public class RegisterIU extends Application {
         // inputs del formulario
         TextField inputName = new TextField();
         TextField inputLastname = new TextField();
-        TextField inputAge = new TextField();
+        Spinner<Integer> inputAge = new Spinner<>(0,85,0);
         TextField inputEmail = new TextField();
         TextField inputCellPhone = new TextField();
         ChoiceBox<String> gender = new ChoiceBox<>();// para los generos masculino y femenino
@@ -55,8 +56,11 @@ public class RegisterIU extends Application {
         inputPassword.setPromptText("Escriba una contraseña");
         inputConfirmPassword.setPromptText("Confirme su contraseña");
 
-        gender.setValue("genero...");
+        gender.setValue("genero...");//valor por defecto del choicebox
         gender.setMinWidth(200);
+
+        inputAge.setEditable(true);//puede editar el valor del spinner
+        inputAge.setMinWidth(200);
 
         // contenedores
         GridPane inputsContentBox = new GridPane();
@@ -113,7 +117,7 @@ public class RegisterIU extends Application {
         // evento del boton
         buttonRegister.setOnAction(e -> {
             Register.setInformationForClassUser(inputName, inputLastname, inputAge, inputEmail, inputCellPhone,
-                    inputUser, inputPassword, inputConfirmPassword);
+                    gender,inputUser, inputPassword, inputConfirmPassword);
         });
 
         // configuración del stage

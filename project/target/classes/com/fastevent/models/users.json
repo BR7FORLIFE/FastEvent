@@ -1,8 +1,15 @@
 {
   "users:": [
     {
-      "name:": "xd",
-      "password:": "123456"
+      "lastName: ": "dgsg",
+      "usuario: ": "dgsdg",
+      "age: ": 3,
+      "password: ": "sdgs",
+      "genero": "femenino",
+      "confirmPassword: ": "dsgds",
+      "cellphone: ": "sdgdsg",
+      "name: ": "sgsg",
+      "email: ": "dgdg"
     }
   ]
 }

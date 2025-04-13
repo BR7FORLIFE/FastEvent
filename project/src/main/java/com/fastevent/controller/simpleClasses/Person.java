@@ -3,15 +3,17 @@ package com.fastevent.controller.simpleClasses;
 public class Person {
     private String name;
     private String lastName;
-    private int age;
-    private Long cellphone;
+    private Integer age;
+    private String cellphone;
+    private String gender;
     private String email;
 
-    public Person(String name, String lastName, int age, Long cellphone, String email) {
+    public Person(String name, String lastName, Integer age, String cellphone, String gender,String email) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
         this.cellphone = cellphone;
+        this.gender = gender;
         this.email = email;
     }
 
@@ -28,11 +30,15 @@ public class Person {
         return age;
     }
 
-    public Long getCellphone() {
+    public String getCellphone() {
         return cellphone;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public String getGender() {
+        return gender;
     }
 }
