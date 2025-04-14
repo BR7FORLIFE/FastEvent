@@ -1,6 +1,7 @@
 package com.fastevent.views.signInUp;
 
 import com.fastevent.common.constants.PathConst;
+import com.fastevent.controller.login.Login;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -94,6 +95,10 @@ public class LoginIU extends Application {
 
         // estilos globales
         scene.getStylesheets().add(pathConst.getLoginCss());
+
+        loginButton.setOnAction(e -> {
+            Login.credentials(userField,passwordField);
+        });
 
         // configuracion del stage
         LoginStage.setTitle("Login - FatEvent");

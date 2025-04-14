@@ -27,7 +27,7 @@ public class Register {
     }
 
     @SuppressWarnings("unchecked")
-    public static void setInformationForClassUser(Stage currentFrame,Control... informations) {
+    public static void setInformationForClassUser(Stage currentFrame, Control... informations) {
         try {
             String name = ((TextField) informations[0]).getText();
             String lastName = ((TextField) informations[1]).getText();
@@ -53,10 +53,10 @@ public class Register {
             Client client = new Client(name, lastName, age, cellphone, gender, email);
             client.setUser(user);
             client.setPassword(password);
-            
+
             registerField(client);
 
-            for(Control nodes: informations){
+            for (Control nodes : informations) {
                 nodes.setDisable(true);
             }
 
@@ -86,6 +86,5 @@ public class Register {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 }
