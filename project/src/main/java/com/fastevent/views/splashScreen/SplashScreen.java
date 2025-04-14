@@ -1,6 +1,8 @@
 package com.fastevent.views.splashScreen;
 
-import com.fastevent.constants.PathConst;
+import com.fastevent.common.constants.PathConst;
+import com.fastevent.common.nextframe.NextFrame;
+import com.fastevent.views.signInUp.RegisterIU;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
@@ -91,6 +93,7 @@ public class SplashScreen extends Application {
         SplashScreenStage.setResizable(false);
         SplashScreenStage.setScene(scene);
         SplashScreenStage.show();
-
+        
+        NextFrame.nextFrameDuration(SplashScreenStage, RegisterIU.class, 3);
     }
 }

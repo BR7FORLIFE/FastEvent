@@ -1,6 +1,7 @@
 package com.fastevent.views.signInUp;
 
-import com.fastevent.constants.PathConst;
+import com.fastevent.common.constants.PathConst;
+import com.fastevent.common.nextframe.NextFrame;
 import com.fastevent.controller.login.Register;
 
 import javafx.application.Application;
@@ -34,7 +35,7 @@ public class RegisterIU extends Application {
         // inputs del formulario
         TextField inputName = new TextField();
         TextField inputLastname = new TextField();
-        Spinner<Integer> inputAge = new Spinner<>(0, 85, 0);
+        Spinner<Integer> inputAge = new Spinner<>(18, 100, 0);
         TextField inputEmail = new TextField();
         TextField inputCellPhone = new TextField();
         ChoiceBox<String> gender = new ChoiceBox<>();// para los generos masculino y femenino
@@ -59,8 +60,8 @@ public class RegisterIU extends Application {
         gender.setValue("genero...");// valor por defecto del choicebox
         gender.setMinWidth(200);
 
-        inputAge.setEditable(true);// puede editar el valor del spinner
         inputAge.setMinWidth(200);
+        inputAge.setEditable(true);
 
         // contenedores
         GridPane inputsContentBox = new GridPane();
@@ -116,7 +117,8 @@ public class RegisterIU extends Application {
 
         // evento del boton
         buttonRegister.setOnAction(e -> {
-            Register.setInformationForClassUser(inputName, inputLastname, inputAge, inputEmail, inputCellPhone,
+            Register.setInformationForClassUser(registerStage, inputName, inputLastname, inputAge, inputEmail,
+                    inputCellPhone,
                     gender, inputUser, inputPassword, inputConfirmPassword);
         });
 

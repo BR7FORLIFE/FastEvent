@@ -2,7 +2,7 @@ package com.fastevent.controller.login;
 
 import java.io.FileReader;
 
-import com.fastevent.constants.PathConst;
+import com.fastevent.common.constants.PathConst;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

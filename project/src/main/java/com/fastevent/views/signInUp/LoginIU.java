@@ -1,6 +1,6 @@
 package com.fastevent.views.signInUp;
 
-import com.fastevent.constants.PathConst;
+import com.fastevent.common.constants.PathConst;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;

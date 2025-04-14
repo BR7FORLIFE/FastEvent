@@ -1,4 +1,4 @@
-package com.fastevent.constants;
+package com.fastevent.common.constants;
 
 import java.io.File;
 
