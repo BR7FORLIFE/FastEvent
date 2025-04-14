@@ -19,10 +19,10 @@ public class Login {
         String username = ((TextField) fields[0]).getText();
         String password = ((TextField) fields[1]).getText();
 
-        userField(username, password);
+        ClientLogin(username, password);
     }
 
-    private static void userField(String user, String password) {
+    private static void ClientLogin(String user, String password) {
 
         try (FileReader reader = new FileReader(pathConst.getUserJSon())) {
             Gson gson = new Gson();
