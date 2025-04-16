@@ -10,6 +10,8 @@ public class PathConst {
     private final String splashScreenCss = getClass().getResource("/css/SplashScreen.css").toExternalForm();
     private final String registerCss = getClass().getResource("/css/RegisterIU.css").toExternalForm();
     private final String loginCss = getClass().getResource("/css/Login.css").toExternalForm();
+    private final String PrincipalInterfaceCSS = getClass().getResource("/css/PrincipalInterfaceIU.css")
+            .toExternalForm();
 
     // recursos(imagenes,videos etc etc)
     private final String logoFastEvent = getClass().getResource("/images/logoFastEvent.png").toExternalForm();
@@ -47,5 +49,9 @@ public class PathConst {
 
     public String getUserJSon() {
         return userJSon;
+    }
+
+    public String getPrincipalInterfaceCSS() {
+        return PrincipalInterfaceCSS;
     }
 }

@@ -97,7 +97,7 @@ public class LoginIU extends Application {
         scene.getStylesheets().add(pathConst.getLoginCss());
 
         loginButton.setOnAction(e -> {
-            Login.credentials(userField,passwordField);
+            Login.credentials(LoginStage,userField,passwordField);
         });
 
         // configuracion del stage

@@ -1,7 +1,6 @@
 package com.fastevent.views.signInUp;
 
 import com.fastevent.common.constants.PathConst;
-import com.fastevent.common.nextframe.NextFrame;
 import com.fastevent.controller.login.Register;
 
 import javafx.application.Application;

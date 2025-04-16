@@ -1,0 +1,26 @@
+.stackpane{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #00e6f2, #6767eb, #2f00ff);
+}
+
+.root-container{
+    -fx-background-color: rgb(117, 113, 113);
+}
+
+.aside{
+    -fx-background-color: rgb(36, 197, 200);
+}
+
+.main{
+    -fx-background-color: #ffffff;
+}
+
+.button{
+    -fx-background-color:rgb(36, 197, 200);
+    -fx-font-size: 13px;
+    -fx-border-color: white;
+    -fx-border-width: 3px;
+    -fx-border-radius: 12px;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    -fx-font-weight: 800;
+}

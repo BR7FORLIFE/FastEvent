@@ -3,26 +3,29 @@ package com.fastevent.controller.login;
 import java.io.FileReader;
 
 import com.fastevent.common.constants.PathConst;
+import com.fastevent.common.nextframe.NextFrame;
+import com.fastevent.views.signInUp.PrincipalInterfaceIU;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Login {
     private static PathConst pathConst = new PathConst();
     private static String userField;
     private static String passwordField;
 
-    public static void credentials(Control... fields) {
+    public static void credentials(Stage currentFrame,Control... fields) {
         String username = ((TextField) fields[0]).getText();
         String password = ((TextField) fields[1]).getText();
 
-        ClientLogin(username, password);
+        ClientLogin(currentFrame,username, password);
     }
 
-    private static void ClientLogin(String user, String password) {
+    private static void ClientLogin(Stage currenFrame,String user, String password) {
 
         try (FileReader reader = new FileReader(pathConst.getUserJSon())) {
             Gson gson = new Gson();
@@ -38,6 +41,7 @@ public class Login {
 
             if (userField.equals(user) && passwordField.equals(password)) {
                 System.out.println("Sesion iniciada con exito!");
+                NextFrame.nextFrameDuration(currenFrame, PrincipalInterfaceIU.class, 2);
             } else {
                 System.out.println("usuario incorrecto!");
             }
