@@ -1,4 +1,4 @@
-package com.fastevent.views.signInUp;
+package com.fastevent.views.CoreInterface;
 
 import com.fastevent.common.constants.PathConst;
 
@@ -32,7 +32,7 @@ public class PrincipalInterfaceIU extends Application {
         Image logo = new Image(pathConst.getLogoFastEvent());// imagen y su contenedor
         ImageView contentLogo = new ImageView(logo);
 
-        //ajustes del contenedor de la imagen
+        // ajustes del contenedor de la imagen
         contentLogo.setFitWidth(300);
         contentLogo.setFitHeight(300);
         contentLogo.setPreserveRatio(true);
@@ -43,16 +43,16 @@ public class PrincipalInterfaceIU extends Application {
         Button disponibilityOfHall = new Button("Eventos disponibles actualmente");
         Button nextHall = new Button("Eventos próximos a realizarse");
 
-        //margenes entre los botones
-        VBox.setMargin(searchHallOfEvent, new Insets(50,0,50,0));
-        VBox.setMargin(postHallOfEvent, new Insets(0,0,50,0));
-        VBox.setMargin(disponibilityOfHall, new Insets(0,0,50,0));
-        VBox.setMargin(nextHall, new Insets(0,0,0,0));
+        // margenes entre los botones
+        VBox.setMargin(searchHallOfEvent, new Insets(50, 0, 50, 0));
+        VBox.setMargin(postHallOfEvent, new Insets(0, 0, 50, 0));
+        VBox.setMargin(disponibilityOfHall, new Insets(0, 0, 50, 0));
+        VBox.setMargin(nextHall, new Insets(0, 0, 0, 0));
 
-        //estilos de los botones
+        // estilos de los botones
         searchHallOfEvent.setMaxWidth(250);
         searchHallOfEvent.setMinHeight(40);
-  
+
         postHallOfEvent.setMaxWidth(250);
         postHallOfEvent.setMinHeight(40);
 
@@ -61,25 +61,11 @@ public class PrincipalInterfaceIU extends Application {
 
         nextHall.setMaxWidth(250);
         nextHall.setMinHeight(40);
-        
+
         searchHallOfEvent.getStyleClass().add("button");
         postHallOfEvent.getStyleClass().add("button");
         disponibilityOfHall.getStyleClass().add("button");
         nextHall.getStyleClass().add("button");
-        
-        //eventos de los botones
-        searchHallOfEvent.setOnAction(e -> {
-
-        });
-
-        postHallOfEvent.setOnAction(e -> {
-        });
-
-        disponibilityOfHall.setOnAction(e -> {
-        });
-
-        nextHall.setOnAction(e -> {
-        });
 
         // contenedores hijos al stackpane
         VBox aside = new VBox();
@@ -87,14 +73,15 @@ public class PrincipalInterfaceIU extends Application {
         HBox root = new HBox(aside, main);
 
         // configuracion de los contenedores hijos
-        aside.getChildren().addAll(contentLogo,searchHallOfEvent, postHallOfEvent, disponibilityOfHall, nextHall);
+        aside.getChildren().addAll(contentLogo, searchHallOfEvent, postHallOfEvent, disponibilityOfHall, nextHall);
         aside.setMinSize(300, 700);
         aside.getStyleClass().add("aside");
         aside.setAlignment(Pos.TOP_CENTER);
 
         main.setMinSize(800, 700);
         main.getStyleClass().add("main");
-
+        main.setAlignment(Pos.TOP_CENTER);
+        
         root.setMaxSize(1100, 700);
         root.setClip(rectangle);
         root.getStyleClass().add("root-container");
@@ -106,6 +93,22 @@ public class PrincipalInterfaceIU extends Application {
         stackPane.setAlignment(Pos.CENTER);
         stackPane.getChildren().add(root);
         stackPane.getStyleClass().add("stackpane");
+
+        // eventos de los botones
+        searchHallOfEvent.setOnAction(e -> {
+            HBox node = (HBox) SearchPublicationIU.getNodes().get(0);
+            VBox.setMargin(node, new Insets(50,0,0,0));
+            main.getChildren().addAll(node);
+        });
+
+        postHallOfEvent.setOnAction(e -> {
+        });
+
+        disponibilityOfHall.setOnAction(e -> {
+        });
+
+        nextHall.setOnAction(e -> {
+        });
 
         // escena
         Scene scene = new Scene(stackPane);

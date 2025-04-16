@@ -4,7 +4,7 @@ import java.io.FileReader;
 
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.nextframe.NextFrame;
-import com.fastevent.views.signInUp.PrincipalInterfaceIU;
+import com.fastevent.views.CoreInterface.PrincipalInterfaceIU;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
