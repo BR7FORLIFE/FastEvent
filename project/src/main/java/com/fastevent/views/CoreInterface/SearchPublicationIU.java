@@ -1,9 +1,11 @@
 package com.fastevent.views.CoreInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.constants.StylesConst;
+import com.fastevent.controller.core.PrincipalController;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,6 +21,22 @@ import javafx.scene.shape.Rectangle;
 public class SearchPublicationIU {
     private static ArrayList<HBox> hboxContainers = new ArrayList<>();
     private static PathConst pathConst = new PathConst();
+    private static List<Label> hallInfo = PrincipalController.getInformationToHall();
+
+
+    /*
+     * private static ArrayList<Label> labelInformationHall = new
+     * ArrayList<>(List.of(
+     * new Label("titleOfHall"),
+     * new Label("ubicationOfHall"),
+     * new Label("priceOfHall"),
+     * new Label("capacityOfHall"),
+     * new Label("dimensionsOfHall"),
+     * new Label("cellphoneToHall")));
+     */
+
+    // private static ArrayList<Label> labelInformationHall =
+    // PrincipalController.getInformationToHall();
 
     public static ArrayList<HBox> getNodes() {
         // clip para el nodo padre
@@ -35,12 +53,14 @@ public class SearchPublicationIU {
         Image image = new Image(pathConst.getLogoFastEvent()); // nodo para la imagen!
 
         // informacion recuperada del modelo (esto es solo para ver si funciona!)
-        Label titleOfHall = new Label("Marella Bodas y Eventos");
-        Label ubicationOfHall = new Label("Manga Caller real #22-06");
-        Label priceOfHall = new Label("500.000/hora");
-        Label capacityOfHall = new Label("20 - 24 personas");
-        Label dimensionsOfHall = new Label("20 x 24");
-        Label cellphoneToHall = new Label("3106320086");
+        /*
+         * Label titleOfHall = new Label("Marella Bodas y Eventos");
+         * Label ubicationOfHall = new Label("Manga Caller real #22-06");
+         * Label priceOfHall = new Label("500.000/hora");
+         * Label capacityOfHall = new Label("20 - 24 personas");
+         * Label dimensionsOfHall = new Label("20 x 24");
+         * Label cellphoneToHall = new Label("3106320086");
+         */ // LISTO
         Button selectHall = new Button("Seleccionar");
 
         // contenedores
@@ -52,17 +72,24 @@ public class SearchPublicationIU {
         // estilos de los contenedores y nodos
 
         // boton de selecccionar salón
-        selectHall.setStyle(StylesConst.getStyleSelectHall());
+        hallInfo.get(0).setStyle(StylesConst.getStyleSelectHall());
         selectHall.setPadding(new Insets(2, 25, 0, 25));
 
         // titulo del salon de evento
-        titleOfHall.setStyle(StylesConst.getStyleTitleHall());
+        hallInfo.get(0).setStyle(StylesConst.getStyleTitleHall());
 
-        ubicationOfHall.setStyle(StylesConst.getStyleForLabels());
-        priceOfHall.setStyle(StylesConst.getStyleForLabels());
-        capacityOfHall.setStyle(StylesConst.getStyleForLabels());
-        dimensionsOfHall.setStyle(StylesConst.getStyleForLabels());
-        cellphoneToHall.setStyle(StylesConst.getStyleForLabels());
+        /*
+         * ubicationOfHall.setStyle(StylesConst.getStyleForLabels());
+         * priceOfHall.setStyle(StylesConst.getStyleForLabels());
+         * capacityOfHall.setStyle(StylesConst.getStyleForLabels());
+         * dimensionsOfHall.setStyle(StylesConst.getStyleForLabels());
+         * cellphoneToHall.setStyle(StylesConst.getStyleForLabels());
+         */
+
+        // version refactorizada
+        for (Label labels : hallInfo) {
+            labels.setStyle(StylesConst.getStyleForLabels());
+        }
 
         labelUbicationOfHall.setStyle(StylesConst.getFontweightToLabel());
         labelCapacityOfHall.setStyle(StylesConst.getFontweightToLabel());
@@ -74,21 +101,21 @@ public class SearchPublicationIU {
         informationToHall.setStyle(StylesConst.getStyleInformationHall());
 
         // configuracion de la grilla
-        informationToHall.add(titleOfHall, 0, 0);
+        informationToHall.add(hallInfo.get(0), 0, 0);
         informationToHall.add(labelUbicationOfHall, 0, 1);
-        informationToHall.add(ubicationOfHall, 1, 1);
+        informationToHall.add(hallInfo.get(1), 1, 1);
         informationToHall.add(labelPriceOfHall, 0, 2);
-        informationToHall.add(priceOfHall, 1, 2);
+        informationToHall.add(hallInfo.get(2), 1, 2);
         informationToHall.add(labelCapacityOfHall, 0, 3);
-        informationToHall.add(capacityOfHall, 1, 3);
+        informationToHall.add(hallInfo.get(3), 1, 3);
         informationToHall.add(labelDimensionsOfHall, 0, 4);
-        informationToHall.add(dimensionsOfHall, 1, 4);
+        informationToHall.add(hallInfo.get(4), 1, 4);
         informationToHall.add(labelCellphoneToHall, 0, 5);
-        informationToHall.add(cellphoneToHall, 1, 5);
+        informationToHall.add(hallInfo.get(5), 1, 5);
         informationToHall.add(selectHall, 0, 6);
         informationToHall.setAlignment(Pos.CENTER);
 
-        GridPane.setMargin(titleOfHall, new Insets(0, 0, 15,25));
+        GridPane.setMargin(hallInfo.get(0), new Insets(0, 0, 15, 25));
         GridPane.setMargin(selectHall, new Insets(10, 0, 0, 55));
 
         // configuracion del contenedor padre

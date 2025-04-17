@@ -81,7 +81,7 @@ public class PrincipalInterfaceIU extends Application {
         main.setMinSize(800, 700);
         main.getStyleClass().add("main");
         main.setAlignment(Pos.TOP_CENTER);
-        
+
         root.setMaxSize(1100, 700);
         root.setClip(rectangle);
         root.getStyleClass().add("root-container");
@@ -96,9 +96,11 @@ public class PrincipalInterfaceIU extends Application {
 
         // eventos de los botones
         searchHallOfEvent.setOnAction(e -> {
-            HBox node = (HBox) SearchPublicationIU.getNodes().get(0);
-            VBox.setMargin(node, new Insets(50,0,0,0));
-            main.getChildren().addAll(node);
+            for (int publications = 0; publications < 1; publications++) {
+                HBox node = (HBox) SearchPublicationIU.getNodes().get(publications);
+                VBox.setMargin(node, new Insets(20, 0, 0, 0));
+                main.getChildren().addAll(node);
+            }
         });
 
         postHallOfEvent.setOnAction(e -> {
