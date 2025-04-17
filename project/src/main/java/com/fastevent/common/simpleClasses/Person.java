@@ -1,4 +1,4 @@
-package com.fastevent.controller.simpleClasses;
+package com.fastevent.common.simpleClasses;
 
 public class Person {
     private String name;

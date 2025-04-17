@@ -13,7 +13,7 @@ import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class Login {
+public class LoginController {
     private static PathConst pathConst = new PathConst();
     private static String userField;
     private static String passwordField;

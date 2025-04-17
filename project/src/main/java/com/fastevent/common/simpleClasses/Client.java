@@ -1,4 +1,4 @@
-package com.fastevent.controller.simpleClasses;
+package com.fastevent.common.simpleClasses;
 
 public class Client extends Person {
     private String user;

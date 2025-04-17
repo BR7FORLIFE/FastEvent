@@ -1,7 +1,7 @@
 package com.fastevent.views.signInUp;
 
 import com.fastevent.common.constants.PathConst;
-import com.fastevent.controller.login.Register;
+import com.fastevent.controller.login.RegisterControler;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -116,7 +116,7 @@ public class RegisterIU extends Application {
 
         // evento del boton
         buttonRegister.setOnAction(e -> {
-            Register.setInformationForClassUser(registerStage, inputName, inputLastname, inputAge, inputEmail,
+            RegisterControler.setInformationForClassUser(registerStage, inputName, inputLastname, inputAge, inputEmail,
                     inputCellPhone,
                     gender, inputUser, inputPassword, inputConfirmPassword);
         });

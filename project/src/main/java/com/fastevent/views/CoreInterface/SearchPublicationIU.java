@@ -88,7 +88,7 @@ public class SearchPublicationIU {
         informationToHall.add(selectHall, 0, 6);
         informationToHall.setAlignment(Pos.CENTER);
 
-        GridPane.setMargin(titleOfHall, new Insets(0, 0, 15, 50));
+        GridPane.setMargin(titleOfHall, new Insets(0, 0, 15,25));
         GridPane.setMargin(selectHall, new Insets(10, 0, 0, 55));
 
         // configuracion del contenedor padre

@@ -5,6 +5,7 @@ import java.io.File;
 public class PathConst {
     // archivos
     private String userJSon = "project/src/main/java/com/fastevent/models/users.json";
+    private String publicationJson = "project/src/main/java/com/fastevent/models/publications.json";
 
     // archivos css
     private final String splashScreenCss = getClass().getResource("/css/SplashScreen.css").toExternalForm();
@@ -53,5 +54,9 @@ public class PathConst {
 
     public String getPrincipalInterfaceCSS() {
         return PrincipalInterfaceCSS;
+    }
+
+    public String getPublicationJson() {
+        return publicationJson;
     }
 }

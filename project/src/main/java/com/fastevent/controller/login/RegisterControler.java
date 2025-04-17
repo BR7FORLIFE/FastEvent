@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.exceptions.Exceptions;
 import com.fastevent.common.nextframe.NextFrame;
-import com.fastevent.controller.simpleClasses.Client;
+import com.fastevent.common.simpleClasses.Client;
 import com.fastevent.views.signInUp.LoginIU;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,10 +20,10 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class Register {
+public class RegisterControler {
     private static PathConst pathConst = new PathConst();
 
-    private Register() {
+    private RegisterControler() {
     }
 
     @SuppressWarnings("unchecked")
