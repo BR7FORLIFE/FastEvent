@@ -3,7 +3,9 @@ package com.fastevent.views.CoreInterface;
 import java.util.ArrayList;
 
 import com.fastevent.common.constants.PathConst;
+import com.fastevent.common.constants.StylesConst;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,7 +35,6 @@ public class SearchPublicationIU {
         Image image = new Image(pathConst.getLogoFastEvent()); // nodo para la imagen!
 
         // informacion recuperada del modelo (esto es solo para ver si funciona!)
-
         Label titleOfHall = new Label("Marella Bodas y Eventos");
         Label ubicationOfHall = new Label("Manga Caller real #22-06");
         Label priceOfHall = new Label("500.000/hora");
@@ -48,10 +49,32 @@ public class SearchPublicationIU {
         GridPane informationToHall = new GridPane();
         HBox fatherContainer = new HBox(); // este sera el contenedor final que sera retornado y mostrado!
 
+        // estilos de los contenedores y nodos
+
+        // boton de selecccionar salón
+        selectHall.setStyle(StylesConst.getStyleSelectHall());
+        selectHall.setPadding(new Insets(2, 25, 0, 25));
+
+        // titulo del salon de evento
+        titleOfHall.setStyle(StylesConst.getStyleTitleHall());
+
+        ubicationOfHall.setStyle(StylesConst.getStyleForLabels());
+        priceOfHall.setStyle(StylesConst.getStyleForLabels());
+        capacityOfHall.setStyle(StylesConst.getStyleForLabels());
+        dimensionsOfHall.setStyle(StylesConst.getStyleForLabels());
+        cellphoneToHall.setStyle(StylesConst.getStyleForLabels());
+
+        labelUbicationOfHall.setStyle(StylesConst.getFontweightToLabel());
+        labelCapacityOfHall.setStyle(StylesConst.getFontweightToLabel());
+        labelCellphoneToHall.setStyle(StylesConst.getFontweightToLabel());
+        labelDimensionsOfHall.setStyle(StylesConst.getFontweightToLabel());
+        labelPriceOfHall.setStyle(StylesConst.getFontweightToLabel());
+
+        // contenedor de la informacion de los salones s
+        informationToHall.setStyle(StylesConst.getStyleInformationHall());
+
         // configuracion de la grilla
-
         informationToHall.add(titleOfHall, 0, 0);
-
         informationToHall.add(labelUbicationOfHall, 0, 1);
         informationToHall.add(ubicationOfHall, 1, 1);
         informationToHall.add(labelPriceOfHall, 0, 2);
@@ -63,15 +86,15 @@ public class SearchPublicationIU {
         informationToHall.add(labelCellphoneToHall, 0, 5);
         informationToHall.add(cellphoneToHall, 1, 5);
         informationToHall.add(selectHall, 0, 6);
+        informationToHall.setAlignment(Pos.CENTER);
 
-        GridPane.setColumnSpan(titleOfHall, 2);
-        GridPane.setColumnSpan(selectHall, 2);
+        GridPane.setMargin(titleOfHall, new Insets(0, 0, 15, 50));
+        GridPane.setMargin(selectHall, new Insets(10, 0, 0, 55));
 
         // configuracion del contenedor padre
         fatherContainer.setMaxWidth(700);
         fatherContainer.setMinHeight(200);
-        fatherContainer
-                .setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #00e6f2, #6767eb, #2f00ff);");
+        fatherContainer.setStyle(StylesConst.getStyleFatherContainer());
         fatherContainer.setClip(rectangle);
         fatherContainer.setAlignment(Pos.CENTER);
 
@@ -79,10 +102,12 @@ public class SearchPublicationIU {
         imageView.setFitWidth(300);
         imageView.setFitHeight(170);
         imageView.setPreserveRatio(true);
-        
+
         informationToHall.setMinWidth(486);
         informationToHall.setMinHeight(100);
- 
+
+        // configuraciones de los nodos
+
         // añadiendo los contenedores hijos la padre
         fatherContainer.getChildren().addAll(informationToHall, imageContainer);
         hboxContainers.add(fatherContainer);
