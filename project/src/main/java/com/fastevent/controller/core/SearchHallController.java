@@ -11,22 +11,25 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class SearchHallController {
 
     private static PathConst pathConst = new PathConst();
-    private static ArrayList<VBox> vboxHallsList = new ArrayList<>();
+    private static ArrayList<HBox> hboxHallsList = new ArrayList<>();
 
-    public static ArrayList<VBox> getNodes() {
+    public static ArrayList<HBox> getNodes() {
 
-        if (vboxHallsList.isEmpty()) {
+        if (hboxHallsList.isEmpty()) {
             for (Hall hallSingle : PrincipalController.getInformationToHall()) {
-                Rectangle rectangle = new Rectangle(700, 200);
+                Rectangle rectangle = new Rectangle(700, 450);
                 rectangle.setArcWidth(12);
                 rectangle.setArcHeight(12);
 
@@ -50,19 +53,25 @@ public class SearchHallController {
                         priceLabel, valorationLabel);
 
                 for (Label label : dataLabels) {
-                    label.setStyle(String.format("%s %s",
-                            StylesConst.getStyleForLabels(),
-                            StylesConst.getFontweightToLabel()));
+                    label.setStyle(String.format("%s", StylesConst.getStyleForLabels()));
                 }
+
+                labelUbication.setStyle(StylesConst.getFontweightToLabel());
+                labelPrice.setStyle(StylesConst.getFontweightToLabel());
+                labelDimensions.setStyle(StylesConst.getFontweightToLabel());
+                labelCellphone.setStyle(StylesConst.getFontweightToLabel());
+                labelCapacity.setStyle(StylesConst.getFontweightToLabel());
 
                 Image image = new Image(pathConst.getLogoFastEvent());
                 ImageView imageView = new ImageView(image);
-                imageView.setFitWidth(300);
-                imageView.setFitHeight(170);
+                imageView.setFitWidth(350);
+                imageView.setFitHeight(200);
                 imageView.setPreserveRatio(true);
+                HBox.setMargin(imageView, new Insets(0, 20, 0, 0));
                 VBox imageContainer = new VBox(imageView);
 
                 Button selectHall = new Button("Seleccionar");
+                selectHall.setStyle(StylesConst.getStyleSelectHall());
 
                 GridPane infoGrid = new GridPane();
                 infoGrid.setStyle(StylesConst.getStyleInformationHall());
@@ -85,21 +94,22 @@ public class SearchHallController {
 
                 GridPane.setMargin(selectHall, new Insets(10, 0, 0, 55));
 
-                VBox fatherContainer = new VBox();
+                HBox fatherContainer = new HBox();
                 fatherContainer.getChildren().addAll(infoGrid, imageContainer);
                 fatherContainer.setMaxWidth(700);
                 fatherContainer.setMinHeight(200);
                 fatherContainer.setAlignment(Pos.CENTER);
                 fatherContainer.setStyle(StylesConst.getStyleFatherContainer());
                 fatherContainer.setClip(rectangle);
+                fatherContainer.setEffect(new DropShadow(10, Color.rgb(0, 0, 0, 0.3)));
 
-                vboxHallsList.add(fatherContainer);
+                hboxHallsList.add(fatherContainer);
             }
         }
-        return vboxHallsList;
+        return hboxHallsList;
     }
 
     public static int getSizeVboxHallsList() {
-        return vboxHallsList.size();
+        return hboxHallsList.size();
     }
 }

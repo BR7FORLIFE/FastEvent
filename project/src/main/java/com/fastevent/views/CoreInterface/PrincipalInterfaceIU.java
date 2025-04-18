@@ -99,8 +99,8 @@ public class PrincipalInterfaceIU extends Application {
         searchHallOfEvent.setOnAction(e -> {
             SearchHallController.getNodes();
             for (int hboxindex = 0; hboxindex < SearchHallController.getSizeVboxHallsList(); hboxindex++) {
-                VBox node = (VBox) SearchHallController.getNodes().get(hboxindex);
-                VBox.setMargin(node, new Insets(15, 0, 0, 0));
+                HBox node = (HBox) SearchHallController.getNodes().get(hboxindex);
+                VBox.setMargin(node, new Insets(10, 0, 5, 0));
                 main.getChildren().addAll(node);
             }
         });

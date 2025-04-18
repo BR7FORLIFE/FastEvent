@@ -1,10 +1,8 @@
 package com.fastevent;
 
-import com.fastevent.controller.core.PrincipalController;
-
-import com.fastevent.views.CoreInterface.PrincipalInterfaceIU;
-
-//import com.fastevent.views.splashScreen.SplashScreen;
+//import com.fastevent.controller.core.PrincipalController;
+//import com.fastevent.views.CoreInterface.PrincipalInterfaceIU;
+import com.fastevent.views.splashScreen.SplashScreen;
 
 public class main {
     public static void main(String[] args) {
@@ -14,8 +12,7 @@ public class main {
          * el .class de la clase y segundo los argumentos necesarios
          */
 
-        // SplashScreen.launch(SplashScreen.class, args);
-        PrincipalInterfaceIU.launch(PrincipalInterfaceIU.class,args);
-        //System.out.println(PrincipalController.getInformationToHall());
+        SplashScreen.launch(SplashScreen.class, args);
+        //PrincipalInterfaceIU.launch(PrincipalInterfaceIU.class,args);
     }
 }

@@ -3,9 +3,9 @@
 }
 
 .grid{
-    -fx-background-color: white;
+    -fx-background-color: transparent;
     -fx-border-width: 2px;
-    -fx-border-color: rgb(4, 213, 213);
+    -fx-border-color: rgb(0, 0, 0);
     -fx-border-style:solid;
     -fx-padding: 20px 30px;
     -fx-border-radius: 6px;

@@ -7,68 +7,70 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
 public class RegisterIU extends Application {
-    // constantes
     private PathConst pathConst = new PathConst();
 
     @Override
     public void start(Stage registerStage) {
-        // contenedor y imagen (logo)
+        // Imagen del logo
         Image image = new Image(pathConst.getLogoFastEvent());
         ImageView logo = new ImageView(image);
-        logo.setFitWidth(450);// ajustar el ancho de la imagen
-        logo.setFitHeight(450);// ajustar el alto de la imagen
-        logo.setPreserveRatio(true); // mantener la razon o proporcion de la imagen
+        logo.setFitWidth(450);
+        logo.setFitHeight(450);
+        logo.setPreserveRatio(true);
 
-        // inputs del formulario
+        // Video de fondo
+        Media media = new Media(pathConst.getRegisterVideo());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        MediaView mediaView = new MediaView(mediaPlayer);
+
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
+        mediaView.setPreserveRatio(false);
+        mediaView.setFitWidth(1200);
+        mediaView.setFitHeight(800);
+
+        // Inputs del formulario
         TextField inputName = new TextField();
         TextField inputLastname = new TextField();
-        Spinner<Integer> inputAge = new Spinner<>(18, 100, 0);
+        Spinner<Integer> inputAge = new Spinner<>(18, 100, 18);
         TextField inputEmail = new TextField();
         TextField inputCellPhone = new TextField();
-        ChoiceBox<String> gender = new ChoiceBox<>();// para los generos masculino y femenino
+        ChoiceBox<String> gender = new ChoiceBox<>();
         TextField inputUser = new TextField();
         PasswordField inputPassword = new PasswordField();
         PasswordField inputConfirmPassword = new PasswordField();
 
-        // botón para registrarse
         Button buttonRegister = new Button("Registrarse!");
 
-        // configuración de los inputs
+        // Placeholder
         inputName.setPromptText("Escribe tu nombre");
         inputLastname.setPromptText("Escribe tus apellidos");
         inputAge.setPromptText("Escribe tu edad");
         inputEmail.setPromptText("Escriba su correo");
         inputCellPhone.setPromptText("Escriba su teléfono");
         gender.getItems().addAll("genero...", "masculino", "femenino");
+        gender.setValue("genero...");
         inputUser.setPromptText("Escriba un nombre de usuario");
         inputPassword.setPromptText("Escriba una contraseña");
         inputConfirmPassword.setPromptText("Confirme su contraseña");
 
-        gender.setValue("genero...");// valor por defecto del choicebox
         gender.setMinWidth(200);
-
         inputAge.setMinWidth(200);
         inputAge.setEditable(true);
 
-        // contenedores
+        // Contenedor Grid
         GridPane inputsContentBox = new GridPane();
-        VBox logoContentBox = new VBox(logo);
-        VBox contentBox = new VBox(logoContentBox, inputsContentBox);
-        Scene scene = new Scene(contentBox, 1200, 800);
-
-        // configuración del grid con nodos
         inputsContentBox.add(inputName, 0, 0);
         inputsContentBox.add(inputLastname, 1, 0);
         inputsContentBox.add(inputAge, 2, 0);
@@ -83,45 +85,44 @@ public class RegisterIU extends Application {
         inputsContentBox.setAlignment(Pos.CENTER);
         inputsContentBox.setHgap(50);
         inputsContentBox.setVgap(30);
-
-        buttonRegister.getStyleClass().add("button");
-
-        // estilos de los inputs
-        inputName.getStyleClass().add("inputForm");
-        inputLastname.getStyleClass().add("inputForm");
-        inputAge.getStyleClass().add("inputForm");
-        inputEmail.getStyleClass().add("inputForm");
-        inputCellPhone.getStyleClass().add("inputForm");
-        gender.getStyleClass().add("inputForm");
-        inputEmail.getStyleClass().add("inputForm");
-        inputUser.getStyleClass().add("inputForm");
-        inputPassword.getStyleClass().add("inputForm");
-        inputConfirmPassword.getStyleClass().add("inputForm");
-
         GridPane.setMargin(buttonRegister, new Insets(0, 0, 0, 40));
+        inputsContentBox.setMaxWidth(700);
+        inputsContentBox.setMinHeight(200);
 
-        // ancho y alto del grid
-        inputsContentBox.setMaxWidth(1000);
-        inputsContentBox.setMinHeight(300);
-
-        // alineaciones
+        // VBox del logo
+        VBox logoContentBox = new VBox(logo);
         logoContentBox.setAlignment(Pos.TOP_CENTER);
+
+        // VBox principal
+        VBox contentBox = new VBox(logoContentBox, inputsContentBox);
         contentBox.setAlignment(Pos.TOP_CENTER);
         VBox.setMargin(inputsContentBox, new Insets(0, 0, 50, 0));
+        contentBox.setStyle("-fx-background-color: transparent;");
 
-        // clases css para los contenedores y la escena
+        // StackPane con video al fondo
+        StackPane stackPane = new StackPane(mediaView, contentBox);
+        Scene scene = new Scene(stackPane, 1200, 800);
+
+        buttonRegister.getStyleClass().add("button");
+        
+        for (Control input : new Control[]{
+                inputName, inputLastname, inputAge, inputEmail,
+                inputCellPhone, gender, inputUser, inputPassword, inputConfirmPassword
+        }) {
+            input.getStyleClass().add("inputForm");
+        }
+
         contentBox.getStyleClass().add("contentbox");
         inputsContentBox.getStyleClass().add("grid");
         scene.getStylesheets().add(pathConst.getRegisterCss());
 
-        // evento del boton
+        // Evento de registro
         buttonRegister.setOnAction(e -> {
             RegisterControler.setInformationForClassUser(registerStage, inputName, inputLastname, inputAge, inputEmail,
-                    inputCellPhone,
-                    gender, inputUser, inputPassword, inputConfirmPassword);
+                    inputCellPhone, gender, inputUser, inputPassword, inputConfirmPassword);
         });
 
-        // configuración del stage
+        // Configuración del Stage
         registerStage.setTitle("Field - Register");
         registerStage.setWidth(1200);
         registerStage.setHeight(800);

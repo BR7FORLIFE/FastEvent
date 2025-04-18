@@ -53,6 +53,9 @@ public class PathConst {
     private final String loginVideo = new File("project/src/main/resources/videos/loginVideo.mp4")
             .toURI().toString();
 
+    private final String registerVideo = new File("project/src/main/resources/videos/registerVideo.mp4")
+            .toURI().toString();
+
     /**
      * 
      * @return getters y setters para acceder a las diferentes constantes
@@ -95,5 +98,9 @@ public class PathConst {
 
     public String getPublicationJson() {
         return publicationJson;
+    }
+
+    public String getRegisterVideo() {
+        return registerVideo;
     }
 }
