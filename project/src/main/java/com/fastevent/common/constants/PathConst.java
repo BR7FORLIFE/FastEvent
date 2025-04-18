@@ -2,17 +2,47 @@ package com.fastevent.common.constants;
 
 import java.io.File;
 
+/**
+ * @author BR7FORLIFE
+ * 
+ */
+
+/*
+ * aca tenemos las constantes que nos permitira evitar la repeticion de codigo
+ * donde aca vemos las diferentes rutas de los dos modelos, los css y los
+ * recursos como imagenes videos etc
+ */
 public class PathConst {
+
+    /**
+     * en este apartado nosotros tenemos dos path o rutas que nos ayudara a acceder
+     * a los distintos modelos o json
+     * en este caso tenemos dos que userJson que se encarga de guardar la sesion de
+     * los usarios y tambien tenemos publicationJson que es un json que nos
+     * permitira guardar la informacion de los distintos salones como su
+     * nombre, descripcion, capacidad, dimensiones, precio, valoracion etc.
+     */
     // archivos
     private String userJSon = "project/src/main/java/com/fastevent/models/users.json";
     private String publicationJson = "project/src/main/java/com/fastevent/models/publications.json";
 
+    /**
+     * aca tenemos las distintas rutas de los archivos css como el css del
+     * splashScreen, del register, login, y pricipal interface que es el css
+     * encargado de la vista de los distintos salones y funcionalidades
+     */
     // archivos css
     private final String splashScreenCss = getClass().getResource("/css/SplashScreen.css").toExternalForm();
     private final String registerCss = getClass().getResource("/css/RegisterIU.css").toExternalForm();
     private final String loginCss = getClass().getResource("/css/Login.css").toExternalForm();
     private final String PrincipalInterfaceCSS = getClass().getResource("/css/PrincipalInterfaceIU.css")
             .toExternalForm();
+
+    /**
+     * vemos los recursos como las imagenes que nos permite adjuntar en el
+     * splasscreen y el login, de una manera mas limpia podemos acceder a ella ya
+     * sea para pruebas o colocarlo en una vista
+     */
 
     // recursos(imagenes,videos etc etc)
     private final String logoFastEvent = getClass().getResource("/images/logoFastEvent.png").toExternalForm();
@@ -22,6 +52,13 @@ public class PathConst {
 
     private final String loginVideo = new File("project/src/main/resources/videos/loginVideo.mp4")
             .toURI().toString();
+
+    /**
+     * 
+     * @return getters y setters para acceder a las diferentes constantes
+     *         encapsuladas
+     * 
+     */
 
     // getters y setters para las constantes
     public String getSplashScreenCSs() {

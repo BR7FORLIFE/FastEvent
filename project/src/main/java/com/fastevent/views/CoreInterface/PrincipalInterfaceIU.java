@@ -1,6 +1,7 @@
 package com.fastevent.views.CoreInterface;
 
 import com.fastevent.common.constants.PathConst;
+import com.fastevent.controller.core.SearchHallController;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -96,9 +97,10 @@ public class PrincipalInterfaceIU extends Application {
 
         // eventos de los botones
         searchHallOfEvent.setOnAction(e -> {
-            for (int publications = 0; publications < 1; publications++) {
-                HBox node = (HBox) SearchPublicationIU.getNodes().get(publications);
-                VBox.setMargin(node, new Insets(20, 0, 0, 0));
+            SearchHallController.getNodes();
+            for (int hboxindex = 0; hboxindex < SearchHallController.getSizeVboxHallsList(); hboxindex++) {
+                VBox node = (VBox) SearchHallController.getNodes().get(hboxindex);
+                VBox.setMargin(node, new Insets(15, 0, 0, 0));
                 main.getChildren().addAll(node);
             }
         });
