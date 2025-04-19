@@ -28,11 +28,15 @@
 
 .button{
     -fx-background-color: #0077ff;
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
     -fx-border-color: white;
     -fx-border-width: 2px;
-    -fx-border-radius: 6px;
+    -fx-border-radius: 8px;
     -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 5, 0.3, 1, 1);
 }
 
 .button:hover{

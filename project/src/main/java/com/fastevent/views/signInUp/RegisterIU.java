@@ -22,7 +22,7 @@ public class RegisterIU extends Application {
     @Override
     public void start(Stage registerStage) {
         // Imagen del logo
-        Image image = new Image(pathConst.getLogoFastEvent());
+        Image image = new Image(pathConst.getLogoFastEventOsc());
         ImageView logo = new ImageView(image);
         logo.setFitWidth(450);
         logo.setFitHeight(450);

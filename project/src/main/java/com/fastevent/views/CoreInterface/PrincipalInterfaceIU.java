@@ -1,8 +1,6 @@
 package com.fastevent.views.CoreInterface;
 
 import com.fastevent.common.constants.PathConst;
-import com.fastevent.controller.core.SearchHallController;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -40,13 +38,13 @@ public class PrincipalInterfaceIU extends Application {
 
         // botones del aside
         Button searchHallOfEvent = new Button("Buscar Salón de eventos");
-        Button postHallOfEvent = new Button("Publicar Salón de eventos");
+        Button PublicationOfHall = new Button("Publicar Salón de eventos");
         Button disponibilityOfHall = new Button("Eventos disponibles actualmente");
         Button nextHall = new Button("Eventos próximos a realizarse");
 
         // margenes entre los botones
         VBox.setMargin(searchHallOfEvent, new Insets(50, 0, 50, 0));
-        VBox.setMargin(postHallOfEvent, new Insets(0, 0, 50, 0));
+        VBox.setMargin(PublicationOfHall, new Insets(0, 0, 50, 0));
         VBox.setMargin(disponibilityOfHall, new Insets(0, 0, 50, 0));
         VBox.setMargin(nextHall, new Insets(0, 0, 0, 0));
 
@@ -54,8 +52,8 @@ public class PrincipalInterfaceIU extends Application {
         searchHallOfEvent.setMaxWidth(250);
         searchHallOfEvent.setMinHeight(40);
 
-        postHallOfEvent.setMaxWidth(250);
-        postHallOfEvent.setMinHeight(40);
+        PublicationOfHall.setMaxWidth(250);
+        PublicationOfHall.setMinHeight(40);
 
         disponibilityOfHall.setMaxWidth(250);
         disponibilityOfHall.setMinHeight(40);
@@ -64,7 +62,7 @@ public class PrincipalInterfaceIU extends Application {
         nextHall.setMinHeight(40);
 
         searchHallOfEvent.getStyleClass().add("button");
-        postHallOfEvent.getStyleClass().add("button");
+        PublicationOfHall.getStyleClass().add("button");
         disponibilityOfHall.getStyleClass().add("button");
         nextHall.getStyleClass().add("button");
 
@@ -74,7 +72,7 @@ public class PrincipalInterfaceIU extends Application {
         HBox root = new HBox(aside, main);
 
         // configuracion de los contenedores hijos
-        aside.getChildren().addAll(contentLogo, searchHallOfEvent, postHallOfEvent, disponibilityOfHall, nextHall);
+        aside.getChildren().addAll(contentLogo, searchHallOfEvent, PublicationOfHall, disponibilityOfHall, nextHall);
         aside.setMinSize(300, 700);
         aside.getStyleClass().add("aside");
         aside.setAlignment(Pos.TOP_CENTER);
@@ -97,15 +95,16 @@ public class PrincipalInterfaceIU extends Application {
 
         // eventos de los botones
         searchHallOfEvent.setOnAction(e -> {
-            SearchHallController.getNodes();
-            for (int hboxindex = 0; hboxindex < SearchHallController.getSizeVboxHallsList(); hboxindex++) {
-                HBox node = (HBox) SearchHallController.getNodes().get(hboxindex);
+            SearchPublicationIU.getNodes();
+            for (int hboxindex = 0; hboxindex < SearchPublicationIU.getSizeVboxHallsList(); hboxindex++) {
+                HBox node = (HBox) SearchPublicationIU.getNodes().get(hboxindex);
                 VBox.setMargin(node, new Insets(10, 0, 5, 0));
                 main.getChildren().addAll(node);
             }
         });
 
-        postHallOfEvent.setOnAction(e -> {
+        PublicationOfHall.setOnAction(e -> {
+
         });
 
         disponibilityOfHall.setOnAction(e -> {

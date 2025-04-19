@@ -46,6 +46,9 @@ public class PathConst {
 
     // recursos(imagenes,videos etc etc)
     private final String logoFastEvent = getClass().getResource("/images/logoFastEvent.png").toExternalForm();
+    private final String logoFastEventOsc = getClass().getResource("/images/logoOscurecido.png").toExternalForm();
+    private final String logoFastEventRemaster = getClass().getResource("/images/logoFastEventRemaster.jpeg").toExternalForm();
+
 
     private final String videoSplashScreen = new File("project/src/main/resources/videos/splashScreenVideo.mp4")
             .toURI().toString();
@@ -102,5 +105,13 @@ public class PathConst {
 
     public String getRegisterVideo() {
         return registerVideo;
+    }
+
+    public String getLogoFastEventOsc() {
+        return logoFastEventOsc;
+    }
+    
+    public String getLogoFastEventRemaster() {
+        return logoFastEventRemaster;
     }
 }
