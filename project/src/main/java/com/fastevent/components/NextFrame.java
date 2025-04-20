@@ -1,4 +1,4 @@
-package com.fastevent.common.nextframe;
+package com.fastevent.components;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Application;

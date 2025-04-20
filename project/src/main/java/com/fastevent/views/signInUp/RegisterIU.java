@@ -14,6 +14,7 @@ import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class RegisterIU extends Application {
@@ -21,12 +22,17 @@ public class RegisterIU extends Application {
 
     @Override
     public void start(Stage registerStage) {
+        Circle circle = new Circle(100);
+
         // Imagen del logo
-        Image image = new Image(pathConst.getLogoFastEventOsc());
+        Image image = new Image(pathConst.getLogoFastEventBlanco());
         ImageView logo = new ImageView(image);
-        logo.setFitWidth(450);
-        logo.setFitHeight(450);
+        logo.setFitWidth(300);
+        logo.setFitHeight(300);
         logo.setPreserveRatio(true);
+        logo.setClip(circle);
+        circle.setCenterX(145);
+        circle.setCenterY(130);
 
         // Video de fondo
         Media media = new Media(pathConst.getRegisterVideo());
@@ -65,8 +71,8 @@ public class RegisterIU extends Application {
         inputPassword.setPromptText("Escriba una contraseña");
         inputConfirmPassword.setPromptText("Confirme su contraseña");
 
-        gender.setMinWidth(200);
-        inputAge.setMinWidth(200);
+        gender.setMinWidth(250);
+        inputAge.setMinWidth(250);
         inputAge.setEditable(true);
 
         // Contenedor Grid
@@ -83,15 +89,20 @@ public class RegisterIU extends Application {
         inputsContentBox.add(buttonRegister, 1, 3, 3, 1);
 
         inputsContentBox.setAlignment(Pos.CENTER);
-        inputsContentBox.setHgap(50);
+        inputsContentBox.setHgap(40);
         inputsContentBox.setVgap(30);
+        GridPane.setMargin(inputName, new Insets(0, 0, 0, 30));
+        GridPane.setMargin(inputEmail, new Insets(0, 0, 0, 30));
+        GridPane.setMargin(inputUser, new Insets(0, 0, 0, 30));
         GridPane.setMargin(buttonRegister, new Insets(0, 0, 0, 40));
         inputsContentBox.setMaxWidth(700);
         inputsContentBox.setMinHeight(200);
 
+
         // VBox del logo
         VBox logoContentBox = new VBox(logo);
-        logoContentBox.setAlignment(Pos.TOP_CENTER);
+        logoContentBox.setAlignment(Pos.CENTER);
+        VBox.setMargin(logoContentBox, new Insets(50, 0, 100, 0));
 
         // VBox principal
         VBox contentBox = new VBox(logoContentBox, inputsContentBox);
@@ -104,8 +115,8 @@ public class RegisterIU extends Application {
         Scene scene = new Scene(stackPane, 1200, 800);
 
         buttonRegister.getStyleClass().add("button");
-        
-        for (Control input : new Control[]{
+
+        for (Control input : new Control[] {
                 inputName, inputLastname, inputAge, inputEmail,
                 inputCellPhone, gender, inputUser, inputPassword, inputConfirmPassword
         }) {

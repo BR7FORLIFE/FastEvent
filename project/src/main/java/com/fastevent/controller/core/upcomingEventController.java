@@ -1,5 +1,5 @@
 package com.fastevent.controller.core;
 
-public class upcomingEventController {
-    
+public class UpcomingEventController {
+
 }

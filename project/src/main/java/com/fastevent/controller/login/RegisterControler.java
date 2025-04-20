@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.exceptions.Exceptions;
-import com.fastevent.common.nextframe.NextFrame;
 import com.fastevent.common.simpleClasses.Client;
+import com.fastevent.components.NextFrame;
 import com.fastevent.views.signInUp.LoginIU;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

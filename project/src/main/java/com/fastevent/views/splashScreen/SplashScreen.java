@@ -1,7 +1,7 @@
 package com.fastevent.views.splashScreen;
 
 import com.fastevent.common.constants.PathConst;
-import com.fastevent.common.nextframe.NextFrame;
+import com.fastevent.components.NextFrame;
 import com.fastevent.views.signInUp.RegisterIU;
 
 import javafx.animation.FadeTransition;

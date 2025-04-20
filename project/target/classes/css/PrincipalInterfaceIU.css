@@ -14,8 +14,19 @@
     -fx-background-color: #ffffff;
 }
 
-.button{
-    -fx-background-color:rgb(36, 197, 200);
+.button-active{
+    -fx-background-color:#fefefe;
+    -fx-font-size: 13px;
+    -fx-border-color: white;
+    -fx-border-width: 3px;
+    -fx-border-radius: 12px;
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    -fx-font-weight: 800;
+}
+
+.button-desactive{
+    -fx-background-color:#24c5c8;
     -fx-font-size: 13px;
     -fx-border-color: white;
     -fx-border-width: 3px;

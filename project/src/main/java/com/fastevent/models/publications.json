@@ -1,25 +1,24 @@
 {
-    "publication": [
-      {
-        "name": "Salón Aurora Premium",
-        "description": "Un espacio elegante para bodas y eventos ejecutivos, equipado con sonido envolvente y aire acondicionado.",
-        "ubication": "Cra 45 #78-21 ,Cartagena",
-        "capacity": 80,
-        "dimension": 375,
-        "cellphone": 3114567892,
-        "price": 750.000,
-        "valoration": 4.8
-      },
-      {
-        "name": "Terraza El Encanto",
-        "description": "Ambiente natural al aire libre con vista panorámica, ideal para celebraciones íntimas y cumpleaños.",
-        "ubication": "Calle 90 #35-19 ,Cartagena",
-        "capacity": 80,
-        "dimension": 180,
-        "cellphone": 3101234567,
-        "price": 400.000,
-        "valoration": 4.5
-      }
-    ]
-  }
-  
+  "publication": [
+    {
+      "name": "Salón Aurora Premium",
+      "description": "Un espacio elegante para bodas y eventos ejecutivos, equipado con sonido envolvente y aire acondicionado.",
+      "ubication": "Cra 45 #78-21 ,Cartagena",
+      "capacity": 80,
+      "dimension": 375,
+      "cellphone": 3114567892,
+      "price": 750.000,
+      "valoration": 4.8
+    },
+    {
+      "name": "Terraza El Encanto",
+      "description": "Ambiente natural al aire libre con vista panorámica, ideal para celebraciones íntimas y cumpleaños.",
+      "ubication": "Calle 90 #35-19 ,Cartagena",
+      "capacity": 80,
+      "dimension": 180,
+      "cellphone": 3101234567,
+      "price": 400.000,
+      "valoration": 4.5
+    }
+  ]
+}

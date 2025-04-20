@@ -3,7 +3,7 @@ package com.fastevent.controller.login;
 import java.io.FileReader;
 
 import com.fastevent.common.constants.PathConst;
-import com.fastevent.common.nextframe.NextFrame;
+import com.fastevent.components.NextFrame;
 import com.fastevent.views.CoreInterface.PrincipalInterfaceIU;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
