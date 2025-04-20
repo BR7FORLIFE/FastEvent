@@ -48,7 +48,9 @@ public class PathConst {
     private final String logoFastEvent = getClass().getResource("/images/logoFastEvent.png").toExternalForm();
     private final String logoFastEventOsc = getClass().getResource("/images/logoOscurecido.png").toExternalForm();
     private final String logoFastEventRemaster = getClass().getResource("/images/logoFastEventRemaster.jpeg").toExternalForm();
-
+    private final String circoImage = getClass().getResource("/images/ImageCirco.jpg").toExternalForm();
+    private final String hayFestivalImage = getClass().getResource("/images/hayFestivalImage.jpeg").toExternalForm();
+    
 
     private final String videoSplashScreen = new File("project/src/main/resources/videos/splashScreenVideo.mp4")
             .toURI().toString();
@@ -113,5 +115,13 @@ public class PathConst {
     
     public String getLogoFastEventRemaster() {
         return logoFastEventRemaster;
+    }
+
+    public String getCircoImage() {
+        return circoImage;
+    }
+
+    public String getHayFestivalImage() {
+        return hayFestivalImage;
     }
 }

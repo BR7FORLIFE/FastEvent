@@ -104,10 +104,11 @@ public class PrincipalInterfaceIU extends Application {
         });
 
         PublicationOfHall.setOnAction(e -> {
-
+            main.getChildren().addAll(PublicationOfHallIU.publicateHall());
         });
 
         disponibilityOfHall.setOnAction(e -> {
+            main.getChildren().addAll(DisponibilityOfEvent.disponibilityOfHall());
         });
 
         nextHall.setOnAction(e -> {

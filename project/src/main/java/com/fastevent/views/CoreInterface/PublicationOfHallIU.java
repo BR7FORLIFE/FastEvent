@@ -5,11 +5,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class PublicationOfHallIU {
 
-    public static VBox publicateHall(){
+    public static HBox publicateHall(){
         Label nameOfHallLabel = new Label("Nombre del salón: ");
         Label ubicationOfHallLabel = new Label("Ubicación del salón: ");
         Label priceOfHallLabel = new Label("Precio del salón: ");
@@ -42,7 +43,18 @@ public class PublicationOfHallIU {
         asideIzq.setVgap(20);
         asideIzq.setAlignment(Pos.CENTER);
 
+
+        Button selectImage = new Button();
+        Label info = new Label("Sube una imagen del salón a publicar");
         
-        return null;
+        VBox asideDer = new VBox();
+        asideDer.getChildren().addAll(selectImage, info);
+
+
+        HBox fatherContainer = new HBox();
+        fatherContainer.getChildren().addAll(asideIzq,asideDer);
+
+        
+        return fatherContainer;
     }
 }

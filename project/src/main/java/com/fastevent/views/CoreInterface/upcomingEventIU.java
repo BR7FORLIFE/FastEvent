@@ -1,5 +1,5 @@
 package com.fastevent.views.CoreInterface;
 
-public class NextHallIU {
+public class upcomingEventIU {
     
 }
