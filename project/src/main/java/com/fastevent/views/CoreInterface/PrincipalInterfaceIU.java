@@ -83,7 +83,6 @@ public class PrincipalInterfaceIU extends Application {
 
         main.setMinSize(800, 700);
         main.getStyleClass().add("main");
-        main.setAlignment(Pos.TOP_CENTER);
 
         root.setMaxSize(1100, 700);
         root.setClip(rectangle);
@@ -99,6 +98,7 @@ public class PrincipalInterfaceIU extends Application {
 
         // eventos de los botones
         searchHallOfEvent.setOnAction(e -> {
+            main.setAlignment(Pos.TOP_CENTER);
             ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, nextHall); // reseteamos los estilos
             main.getChildren().clear(); // limpiamos los nodos anteriores que tuvo el main container
             SearchPublicationIU.getNodes(); // obtenemos la lista de nodos para mostrar en el campo
@@ -124,12 +124,21 @@ public class PrincipalInterfaceIU extends Application {
         });
 
         publicationOfHall.setOnAction(e -> {
+            main.setAlignment(Pos.CENTER);
             ResetStyleButtons.reset(searchHallOfEvent, disponibilityOfHall, nextHall);// reseteamos los botones
             publicationOfHall.getStyleClass().remove("button-desactive"); // removemos la clase desactive
             publicationOfHall.getStyleClass().add("button-active");
             HBox node = PublicationOfHallIU.publicateHall(); // guardamos en una variable en contenedor que nos llega
             node.setAlignment(Pos.CENTER); // alineamos el contenido al centro
 
+            //animacion de fade
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1));
+            fadeTransition.setNode(node);
+            fadeTransition.setCycleCount(1);
+            fadeTransition.setFromValue(0);
+            fadeTransition.setToValue(1);
+            fadeTransition.play();
+        
             main.getChildren().clear(); // limpiamos los nodos anteriores
             main.getChildren().add(node); // añadimos el nuevo nodo
         });
