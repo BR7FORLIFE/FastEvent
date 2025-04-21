@@ -111,7 +111,7 @@ public class PrincipalInterfaceIU extends Application {
                 node.setOpacity(0);
 
                 // aplicamos una transicion de FadeTransition
-                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), node);
+                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), node);
                 fadeTransition.setFromValue(0.0);
                 fadeTransition.setToValue(1.0);
                 fadeTransition.setDelay(Duration.seconds(hboxindex * 0.2));
@@ -132,7 +132,7 @@ public class PrincipalInterfaceIU extends Application {
             node.setAlignment(Pos.CENTER); // alineamos el contenido al centro
 
             //animacion de fade
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1));
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
             fadeTransition.setNode(node);
             fadeTransition.setCycleCount(1);
             fadeTransition.setFromValue(0);
@@ -144,11 +144,20 @@ public class PrincipalInterfaceIU extends Application {
         });
 
         disponibilityOfHall.setOnAction(e -> {
+            main.setAlignment(Pos.CENTER);
             ResetStyleButtons.reset(publicationOfHall, searchHallOfEvent, nextHall);// reseteamos los estilos
             disponibilityOfHall.getStyleClass().remove("button-desactive"); // desactivamos la clase css
             disponibilityOfHall.getStyleClass().add("button-active");
             main.getChildren().clear();
-            main.getChildren().add(DisponibilityOfEvent.disponibilityOfHall()); //mostramos el nodo en el container
+            HBox node = DisponibilityOfEvent.disponibilityOfHall();
+
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
+            fadeTransition.setFromValue(0);
+            fadeTransition.setToValue(1);
+            fadeTransition.setNode(node);
+            fadeTransition.play();
+
+            main.getChildren().add(node); //mostramos el nodo en el container
         });
 
         nextHall.setOnAction(e -> {
