@@ -1,19 +1,5 @@
 {
-<<<<<<< HEAD
-  "users:": [
-    {
-      "user": "bryan",
-      "password": "123",
-      "name": "bryan",
-      "lastName": "diaz",
-      "age": 18,
-      "cellphone": "322323",
-      "gender": "masculino",
-      "email": "diazpa@ldhad"
-    }
-  ]
+  "users:": [ ]
 }
-=======
-  "users:": []
-}
->>>>>>> e356c47a65c2838b625a077cab8d31536eb0cfe2
+
+ 
