@@ -1,16 +1,21 @@
 package com.fastevent.views.CoreInterface;
 
 import com.fastevent.common.constants.PathConst;
+import com.fastevent.common.simpleClasses.Hall;
 import com.fastevent.components.ResetStyleButtons;
+import com.fastevent.controller.core.SearchHallController;
+import com.fastevent.views.modals.SearchPublicationModal;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -107,18 +112,48 @@ public class PrincipalInterfaceIU extends Application {
 
             // iteramos por cada nodo devuelto por getNodes()
             for (int hboxindex = 0; hboxindex < SearchPublicationIU.getSizeVboxHallsList(); hboxindex++) {
-                HBox node = (HBox) SearchPublicationIU.getNodes().get(hboxindex);
-                node.setOpacity(0);
+                // obtenemos cada contenedor de Search publication
+                HBox container = (HBox) SearchPublicationIU.getNodes().get(hboxindex);
+                container.setOpacity(0); // ponemos la opacidad en 0
+
+                // accedemos al primer hijo de cada container que es el GridPane
+                GridPane childrenGrid = (GridPane) container.getChildren().get(0);
+                Button selectHall = null; // guardamos el estado de l boton ver si se encuentra o no
+
+                /*
+                 * como todos los botones, textfield, label heredan de un mismo padre
+                 * y no sabemos si el hijo que tipo de nodo sea recorremos cada hijo de
+                 * la grilla usando un estilo de objeto mas global que es el Node porque
+                 * de el heredan todos los subnodos cuando se encuentre un instancia de
+                 * Button me lo guarda en el estado que se creo anteriormente
+                 * (Button selectHall = null;)
+                 */
+                for (Node child : childrenGrid.getChildren()) {
+                    if (child instanceof Button) {
+                        selectHall = (Button) child;
+                        break;
+                    }
+                }
+
+                // si se encontro un boton le asignamos un evento y listo todo depende
+                // del controlador xd
+                if (selectHall != null) {
+                    final int state = hboxindex;
+                    selectHall.setOnAction(event -> {
+                        Hall hall = SearchHallController.getHallById(state);
+                        SearchPublicationModal.modal(principalInterfaceStage, hall);
+                    });
+                }
 
                 // aplicamos una transicion de FadeTransition
-                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), node);
+                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), container);
                 fadeTransition.setFromValue(0.0);
                 fadeTransition.setToValue(1.0);
                 fadeTransition.setDelay(Duration.seconds(hboxindex * 0.2));
 
                 // damos pargen y añadimos al main container
-                VBox.setMargin(node, new Insets(10, 0, 5, 0));
-                main.getChildren().addAll(node);
+                VBox.setMargin(container, new Insets(10, 0, 5, 0));
+                main.getChildren().addAll(container);
                 fadeTransition.play();
             }
         });
@@ -131,14 +166,14 @@ public class PrincipalInterfaceIU extends Application {
             HBox node = PublicationOfHallIU.publicateHall(); // guardamos en una variable en contenedor que nos llega
             node.setAlignment(Pos.CENTER); // alineamos el contenido al centro
 
-            //animacion de fade
+            // animacion de fade
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
             fadeTransition.setNode(node);
             fadeTransition.setCycleCount(1);
             fadeTransition.setFromValue(0);
             fadeTransition.setToValue(1);
             fadeTransition.play();
-        
+
             main.getChildren().clear(); // limpiamos los nodos anteriores
             main.getChildren().add(node); // añadimos el nuevo nodo
         });
@@ -157,17 +192,23 @@ public class PrincipalInterfaceIU extends Application {
             fadeTransition.setNode(node);
             fadeTransition.play();
 
-            main.getChildren().add(node); //mostramos el nodo en el container
+            main.getChildren().add(node); // mostramos el nodo en el container
         });
 
         nextHall.setOnAction(e -> {
-            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, searchHallOfEvent); //reseteamos css
-            nextHall.getStyleClass().remove("button-desactive"); //desactivamos la clase css
+            main.setAlignment(Pos.CENTER);
+            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, searchHallOfEvent); // reseteamos css
+            nextHall.getStyleClass().remove("button-desactive"); // desactivamos la clase css
             nextHall.getStyleClass().add("button-active");
             main.getChildren().clear();
             for (HBox node : UpcomingEventIU.upcomingEvent()) { // aplicamos margen y añadimos los distintos nodos
-                HBox.setMargin(node, new Insets(10, 5, 0, 0));
-                main.getChildren().addAll(node); 
+                VBox.setMargin(node, new Insets(10, 5, 10, 0));
+                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1));
+                fadeTransition.setFromValue(0);
+                fadeTransition.setToValue(1);
+                fadeTransition.setNode(node);
+                fadeTransition.play();
+                main.getChildren().addAll(node);
             }
         });
 

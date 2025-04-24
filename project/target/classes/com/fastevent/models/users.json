@@ -1,5 +1,14 @@
 {
-  "users:": [ ]
+  "users:": [
+    {
+      "user": "br7",
+      "password": "123",
+      "name": "byan",
+      "lastName": "diaz",
+      "age": 18,
+      "cellphone": "132131",
+      "gender": "masculino",
+      "email": "dhakd@"
+    }
+  ]
 }
-
- 
