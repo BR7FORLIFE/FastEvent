@@ -19,6 +19,26 @@
       "cellphone": 3101234567,
       "price": 400.000,
       "valoration": 4.5
+    },
+    {
+      "name": "bryan",
+      "description": "hkshdkah",
+      "ubication": "sahdkashdk",
+      "capacity": 50650,
+      "dimension": 5605,
+      "cellphone": 560,
+      "price": 506506.0,
+      "valoration": 4.361880513580631
+    },
+    {
+      "name": "gjsgdhjag",
+      "description": "hsjdhakdh",
+      "ubication": "jdhskdh",
+      "capacity": 4546,
+      "dimension": 5464,
+      "cellphone": 64654564,
+      "price": 65.5,
+      "valoration": 4.7406367346582865
     }
   ]
 }

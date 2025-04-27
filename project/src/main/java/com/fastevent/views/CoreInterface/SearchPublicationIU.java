@@ -26,6 +26,7 @@ public class SearchPublicationIU {
     private static ArrayList<HBox> hboxHallsList = new ArrayList<>();
 
     public static ArrayList<HBox> getNodes() {
+        hboxHallsList.clear();
 
         if (hboxHallsList.isEmpty()) {
             for (Hall hallSingle : PrincipalController.getInformationToHall()) {
