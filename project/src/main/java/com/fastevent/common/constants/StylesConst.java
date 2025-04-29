@@ -35,21 +35,25 @@ public class StylesConst {
      * - styleTitleHall <-- son los estilos para los distintos titulos de cada salon
      * publicado
      */
-    private static String styleForLabels = "-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: 800; -fx-font-family: Cochin, Georgia, Times, 'Times New Roman', serif;";
+
+    private static String styleForLabelsTitle = "-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: 800; -fx-font-family: Cochin, Georgia, Times, 'Times New Roman', serif;";
+
+    private static String styleForLabels = "-fx-text-fill:#ffffff; -fx-font-size: 15px; -fx-font-weight: 800; -fx-font-family: Cochin, Georgia, Times, 'Times New Roman', serif;";
 
     private static String fontweightToLabel = "-fx-font-weight: 800;";
 
-    private static String styleSelectHall = "-fx-background-color:rgb(255, 255, 255); -fx-font-weight: 800";
+    private static String styleSelectHall = "-fx-background-color:#ffcf49; -fx-font-weight: 800";
 
     private static String styleInformationHall = " -fx-font-size: 15px; -fx-font-family: Cochin, Georgia, Times, 'Times New Roman', serif; ";
-    private static String styleFatherContainer = "-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #00e6f2, #6767eb, #2f00ff);";
+    private static String styleFatherContainer = "-fx-background-color: linear-gradient(to right, #093969 30%, #14468B 73%, #2E59CA 99%);";
+
     private static String styleTitleHall = "-fx-text-fill: white; -fx-font-size: 17px; -fx-font-weight: 700; -fx-font-family: Cochin, Georgia, Times, 'Times New Roman', serif;";
 
     /**
      * 
      * @return devulve los diferentes estilos de una forma estatica sin necesidad de
      *         instanciar objetos
-     */ 
+     */
     public static String getStyleForLabels() {
         return styleForLabels;
     }
@@ -72,5 +76,9 @@ public class StylesConst {
 
     public static String getStyleTitleHall() {
         return styleTitleHall;
+    }
+
+    public static String getStyleForLabelsTitle() {
+        return styleForLabelsTitle;
     }
 }

@@ -49,14 +49,14 @@ public class ReserveHallIU {
                 Label priceLabel = new Label(String.valueOf(hallSingle.getPriceOfHall()));
                 Label valorationLabel = new Label(String.valueOf(hallSingle.getValorationOfHall()));
 
-                List<Label> dataLabels = List.of(nameLabel, descriptionLabel, ubicationLabel,
+                List<Label> dataLabels = List.of(descriptionLabel, ubicationLabel,
                         capacityLabel, dimensionLabel, cellphoneLabel,
                         priceLabel, valorationLabel);
 
                 for (Label label : dataLabels) {
                     label.setStyle(String.format("%s", StylesConst.getStyleForLabels()));
                 }
-
+                nameLabel.setStyle(StylesConst.getStyleForLabelsTitle());
                 labelUbication.setStyle(StylesConst.getFontweightToLabel());
                 labelPrice.setStyle(StylesConst.getFontweightToLabel());
                 labelDimensions.setStyle(StylesConst.getFontweightToLabel());
@@ -71,7 +71,7 @@ public class ReserveHallIU {
                 HBox.setMargin(imageView, new Insets(0, 20, 0, 0));
                 VBox imageContainer = new VBox(imageView);
 
-                Button selectHall = new Button("Seleccionar");
+                Button selectHall = new Button("Reservar");
                 selectHall.setStyle(StylesConst.getStyleSelectHall());
 
                 GridPane infoGrid = new GridPane();

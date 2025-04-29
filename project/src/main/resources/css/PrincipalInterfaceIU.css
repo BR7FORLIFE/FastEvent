@@ -1,5 +1,5 @@
 .stackpane{
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #00e6f2, #6767eb, #2f00ff);
+    -fx-background-color: linear-gradient(to right, #093969 30%, #14468B 73%, #2E59CA 99%);
 }
 
 .root-container{
@@ -7,7 +7,7 @@
 }
 
 .aside{
-    -fx-background-color: #24c5c8;
+    -fx-background-color: #6a93bd;
 }
 
 .main{
@@ -16,7 +16,7 @@
 
 .button-active{
     -fx-background-color:#fefefe;
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
     -fx-border-color: white;
     -fx-border-width: 3px;
     -fx-border-radius: 12px;
@@ -26,12 +26,12 @@
 }
 
 .button-desactive{
-    -fx-background-color:#24c5c8;
+    -fx-background-color:#e2eefe;
     -fx-font-size: 13px;
-    -fx-border-color: white;
+    -fx-border-color: #e2eefe;
     -fx-border-width: 3px;
     -fx-border-radius: 12px;
-    -fx-text-fill: rgb(255, 255, 255);
+    -fx-text-fill: rgb(1, 1, 1);
     -fx-font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     -fx-font-weight: 800;
 }

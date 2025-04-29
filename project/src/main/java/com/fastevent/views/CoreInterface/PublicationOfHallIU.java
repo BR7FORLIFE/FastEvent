@@ -61,8 +61,7 @@ public class PublicationOfHallIU {
                 Button publicateButton = new Button("Publicar Salón");
                 publicateButton.setMaxWidth(200);
                 publicateButton.setMinHeight(30);
-                publicateButton.setStyle(
-                                "-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 12px; -fx-font-family: Cambria;");
+                publicateButton.setStyle(StylesConst.getStyleSelectHall());
 
                 // grilla para ordenar los elementos
                 GridPane asideIzq = new GridPane();
@@ -93,7 +92,7 @@ public class PublicationOfHallIU {
                 Button selectImage = new Button("", imageView);
                 selectImage.setMaxWidth(200);
                 selectImage.setMinHeight(200);
-                selectImage.setStyle(StylesConst.getStyleSelectHall());
+                selectImage.setStyle("-fx-background-color: white");
                 Label info = new Label("Sube una imagen del salón a publicar");
                 info.setStyle("-fx-text-fill: white; -fx-font-size: 14px; -fx-font-family: Cambria; -fx-font-weight: 800;");
 
@@ -124,7 +123,7 @@ public class PublicationOfHallIU {
                 fatherContainer.setMaxWidth(700);
                 fatherContainer.setMinHeight(600);
                 fatherContainer
-                                .setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #00e6f2, #6767eb, #2f00ff)");
+                                .setStyle(StylesConst.getStyleFatherContainer());
                 fatherContainer.setEffect(dropShadow);
 
                 return fatherContainer;

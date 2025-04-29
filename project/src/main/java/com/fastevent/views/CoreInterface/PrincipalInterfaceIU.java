@@ -13,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -28,36 +29,29 @@ public class PrincipalInterfaceIU extends Application {
 
     @Override
     public void start(Stage principalInterfaceStage) {
-        /* shapes */
-
-        // rectangulo para el clip en el root contenedor y contenedor de imagen
         Rectangle rectangle = new Rectangle();
         rectangle.setWidth(1100);
         rectangle.setHeight(700);
         rectangle.setArcWidth(15);
         rectangle.setArcHeight(15);
 
-        Image logo = new Image(pathConst.getLogoFastEvent());// imagen y su contenedor
+        Image logo = new Image(pathConst.getLogoFastEvent());
         ImageView contentLogo = new ImageView(logo);
 
-        // ajustes del contenedor de la imagen
         contentLogo.setFitWidth(300);
         contentLogo.setFitHeight(300);
         contentLogo.setPreserveRatio(true);
 
-        // botones del aside
         Button searchHallOfEvent = new Button("Buscar Salón de eventos");
         Button publicationOfHall = new Button("Publicar Salón de eventos");
         Button disponibilityOfHall = new Button("Eventos disponibles actualmente");
         Button nextHall = new Button("Eventos próximos a realizarse");
 
-        // margenes entre los botones
         VBox.setMargin(searchHallOfEvent, new Insets(50, 0, 50, 0));
         VBox.setMargin(publicationOfHall, new Insets(0, 0, 50, 0));
         VBox.setMargin(disponibilityOfHall, new Insets(0, 0, 50, 0));
         VBox.setMargin(nextHall, new Insets(0, 0, 0, 0));
 
-        // estilos de los botones
         searchHallOfEvent.setMaxWidth(250);
         searchHallOfEvent.setMinHeight(40);
 
@@ -75,13 +69,11 @@ public class PrincipalInterfaceIU extends Application {
         disponibilityOfHall.getStyleClass().add("button-desactive");
         nextHall.getStyleClass().add("button-desactive");
 
-        // contenedores hijos al stackpane
         VBox aside = new VBox();
         VBox main = new VBox();
-        //ScrollPane scrollPane = new ScrollPane();
-        HBox root = new HBox(aside, main);
+        ScrollPane scrollPane = new ScrollPane();
+        HBox root = new HBox(aside, scrollPane);
 
-        // configuracion de los contenedores hijos
         aside.getChildren().addAll(contentLogo, searchHallOfEvent, publicationOfHall, disponibilityOfHall, nextHall);
         aside.setMinSize(300, 700);
         aside.getStyleClass().add("aside");
@@ -90,11 +82,15 @@ public class PrincipalInterfaceIU extends Application {
         main.setMinSize(800, 700);
         main.getStyleClass().add("main");
 
+        scrollPane.setContent(main);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPrefSize(800, 700);
+        scrollPane.setStyle("-fx-background: transparent;");
+
         root.setMaxSize(1100, 700);
         root.setClip(rectangle);
         root.getStyleClass().add("root-container");
 
-        // contenedor base para apilar y su configuracion
         StackPane stackPane = new StackPane();
         stackPane.setMaxWidth(principalInterfaceStage.getWidth());
         stackPane.setMaxHeight(principalInterfaceStage.getHeight());
@@ -102,33 +98,20 @@ public class PrincipalInterfaceIU extends Application {
         stackPane.getChildren().add(root);
         stackPane.getStyleClass().add("stackpane");
 
-        // eventos de los botones
         searchHallOfEvent.setOnAction(e -> {
             main.setAlignment(Pos.TOP_CENTER);
-            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, nextHall); // reseteamos los estilos
-            main.getChildren().clear(); // limpiamos los nodos anteriores que tuvo el main container
-            ReserveHallIU.getNodes(); // obtenemos la lista de nodos para mostrar en el campo
-            searchHallOfEvent.getStyleClass().remove("button-desactive"); // removemos el estilo desactive
+            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, nextHall);
+            main.getChildren().clear();
+            ReserveHallIU.getNodes();
+            searchHallOfEvent.getStyleClass().remove("button-desactive");
             searchHallOfEvent.getStyleClass().add("button-active");
 
-            // iteramos por cada nodo devuelto por getNodes()
             for (int hboxindex = 0; hboxindex < ReserveHallIU.getSizeVboxHallsList(); hboxindex++) {
-                // obtenemos cada contenedor de Search publication
                 HBox container = (HBox) ReserveHallIU.getNodes().get(hboxindex);
-                container.setOpacity(0); // ponemos la opacidad en 0
-
-                // accedemos al primer hijo de cada container que es el GridPane
+                container.setOpacity(0);
                 GridPane childrenGrid = (GridPane) container.getChildren().get(0);
-                Button selectHall = null; // guardamos el estado de l boton ver si se encuentra o no
+                Button selectHall = null;
 
-                /*
-                 * como todos los botones, textfield, label heredan de un mismo padre
-                 * y no sabemos si el hijo que tipo de nodo sea recorremos cada hijo de
-                 * la grilla usando un estilo de objeto mas global que es el Node porque
-                 * de el heredan todos los subnodos cuando se encuentre un instancia de
-                 * Button me lo guarda en el estado que se creo anteriormente
-                 * (Button selectHall = null;)
-                 */
                 for (Node child : childrenGrid.getChildren()) {
                     if (child instanceof Button) {
                         selectHall = (Button) child;
@@ -136,8 +119,6 @@ public class PrincipalInterfaceIU extends Application {
                     }
                 }
 
-                // si se encontro un boton le asignamos un evento y listo todo depende
-                // del controlador xd
                 if (selectHall != null) {
                     final int state = hboxindex;
                     selectHall.setOnAction(event -> {
@@ -146,13 +127,11 @@ public class PrincipalInterfaceIU extends Application {
                     });
                 }
 
-                // aplicamos una transicion de FadeTransition
                 FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), container);
                 fadeTransition.setFromValue(0.0);
                 fadeTransition.setToValue(1.0);
                 fadeTransition.setDelay(Duration.seconds(hboxindex * 0.2));
 
-                // damos pargen y añadimos al main container
                 VBox.setMargin(container, new Insets(10, 0, 5, 0));
                 main.getChildren().addAll(container);
                 fadeTransition.play();
@@ -161,13 +140,12 @@ public class PrincipalInterfaceIU extends Application {
 
         publicationOfHall.setOnAction(e -> {
             main.setAlignment(Pos.CENTER);
-            ResetStyleButtons.reset(searchHallOfEvent, disponibilityOfHall, nextHall);// reseteamos los botones
-            publicationOfHall.getStyleClass().remove("button-desactive"); // removemos la clase desactive
+            ResetStyleButtons.reset(searchHallOfEvent, disponibilityOfHall, nextHall);
+            publicationOfHall.getStyleClass().remove("button-desactive");
             publicationOfHall.getStyleClass().add("button-active");
-            HBox node = PublicationOfHallIU.publicateHall(); // guardamos en una variable en contenedor que nos llega
-            node.setAlignment(Pos.CENTER); // alineamos el contenido al centro
+            HBox node = PublicationOfHallIU.publicateHall();
+            node.setAlignment(Pos.CENTER);
 
-            // animacion de fade
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
             fadeTransition.setNode(node);
             fadeTransition.setCycleCount(1);
@@ -175,14 +153,14 @@ public class PrincipalInterfaceIU extends Application {
             fadeTransition.setToValue(1);
             fadeTransition.play();
 
-            main.getChildren().clear(); // limpiamos los nodos anteriores
-            main.getChildren().add(node); // añadimos el nuevo nodo
+            main.getChildren().clear();
+            main.getChildren().add(node);
         });
 
         disponibilityOfHall.setOnAction(e -> {
             main.setAlignment(Pos.CENTER);
-            ResetStyleButtons.reset(publicationOfHall, searchHallOfEvent, nextHall);// reseteamos los estilos
-            disponibilityOfHall.getStyleClass().remove("button-desactive"); // desactivamos la clase css
+            ResetStyleButtons.reset(publicationOfHall, searchHallOfEvent, nextHall);
+            disponibilityOfHall.getStyleClass().remove("button-desactive");
             disponibilityOfHall.getStyleClass().add("button-active");
             main.getChildren().clear();
             HBox node = DisponibilityOfEvent.disponibilityOfHall();
@@ -193,16 +171,16 @@ public class PrincipalInterfaceIU extends Application {
             fadeTransition.setNode(node);
             fadeTransition.play();
 
-            main.getChildren().add(node); // mostramos el nodo en el container
+            main.getChildren().add(node);
         });
 
         nextHall.setOnAction(e -> {
             main.setAlignment(Pos.CENTER);
-            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, searchHallOfEvent); // reseteamos css
-            nextHall.getStyleClass().remove("button-desactive"); // desactivamos la clase css
+            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, searchHallOfEvent);
+            nextHall.getStyleClass().remove("button-desactive");
             nextHall.getStyleClass().add("button-active");
             main.getChildren().clear();
-            for (HBox node : UpcomingEventIU.upcomingEvent()) { // aplicamos margen y añadimos los distintos nodos
+            for (HBox node : UpcomingEventIU.upcomingEvent()) {
                 VBox.setMargin(node, new Insets(10, 5, 10, 0));
                 FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1));
                 fadeTransition.setFromValue(0);
@@ -213,11 +191,9 @@ public class PrincipalInterfaceIU extends Application {
             }
         });
 
-        // escena
         Scene scene = new Scene(stackPane);
         scene.getStylesheets().add(pathConst.getPrincipalInterfaceCSS());
 
-        // configuracion del stage
         principalInterfaceStage.setTitle("Principal Interface - FastEvent");
         principalInterfaceStage.setResizable(false);
         principalInterfaceStage.setWidth(1200);

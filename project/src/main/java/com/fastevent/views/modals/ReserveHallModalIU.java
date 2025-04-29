@@ -25,14 +25,14 @@ public class ReserveHallModalIU {
         Image image = new Image(pathConst.getLogoFastEvent());
         ImageView imageView = new ImageView(image);
 
-        imageView.setFitWidth(150);
-        imageView.setFitHeight(150);
+        imageView.setFitWidth(300);
+        imageView.setFitHeight(300);
         imageView.setPreserveRatio(true);
 
         Label title = new Label(hall.getNameOfHall());
         Label capacity = new Label(String.valueOf("Capacidad: " + hall.getCapacity() + " personas!"));
         Label dimension = new Label(String.valueOf("Dimension: " + hall.getDimension() + " metros cradrados!"));
-        Label cellphone = new Label(String.valueOf("Telefono: " + hall.getCellphone()));
+        Label timeZone = new Label("Rango Horario: ");
         Label price = new Label(String.valueOf("Precio: " + hall.getPriceOfHall() + " COP"));
         Button saveHall = new Button("Guardar en Favoritos");
         Button selectHall = new Button("Reservar Salon");
@@ -42,15 +42,16 @@ public class ReserveHallModalIU {
         gridPane.add(title, 0, 1);
         gridPane.add(capacity, 0, 2);
         gridPane.add(dimension, 0, 3);
-        gridPane.add(cellphone, 0, 4);
+        gridPane.add(timeZone, 0, 4);
         gridPane.add(price, 0, 5);
         gridPane.add(saveHall, 0, 6);
         gridPane.add(selectHall, 1, 6);
 
+        GridPane.setColumnSpan(imageView, 2);
         GridPane.setColumnSpan(title, 2);
         GridPane.setColumnSpan(capacity, 2);
         GridPane.setColumnSpan(dimension, 2);
-        GridPane.setColumnSpan(cellphone, 2);
+        GridPane.setColumnSpan(timeZone, 2);
         GridPane.setColumnSpan(price, 2);
 
         gridPane.setAlignment(Pos.CENTER);
@@ -59,7 +60,7 @@ public class ReserveHallModalIU {
 
         // estilos de los nodos
         for (Label label : new Label[] {
-                title, capacity, dimension, cellphone, price
+                title, capacity, dimension, timeZone, price
         }) {
             label.setStyle(StylesConst.getStyleForLabels());
         }
@@ -74,11 +75,11 @@ public class ReserveHallModalIU {
 
         stageModal.setTitle("Reserve Event Hall");
         stageModal.setScene(scene);
-        stageModal.setWidth(400);
-        stageModal.setHeight(400);
+        stageModal.setWidth(500);
+        stageModal.setHeight(500);
         stageModal.setResizable(false);
-        stageModal.setX(900);
-        stageModal.setY(400);
+        stageModal.setX(800);
+        stageModal.setY(300);
         stageModal.showAndWait(); // muestra y espea que cierre la ventana para continuar
     }
 }

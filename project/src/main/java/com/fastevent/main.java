@@ -1,10 +1,6 @@
 package com.fastevent;
 
-import com.fastevent.views.signInUp.RegisterIU;
-
-//import com.fastevent.controller.core.PrincipalController;
-//import com.fastevent.views.CoreInterface.PrincipalInterfaceIU;
-//import com.fastevent.views.splashScreen.SplashScreen;
+import com.fastevent.views.CoreInterface.PrincipalInterfaceIU;
 
 public class main {
     public static void main(String[] args) {
@@ -15,7 +11,7 @@ public class main {
          */
 
         //SplashScreen.launch(SplashScreen.class, args);
-        //PrincipalInterfaceIU.launch(PrincipalInterfaceIU.class,args);
-        RegisterIU.launch(RegisterIU.class, args);
+        PrincipalInterfaceIU.launch(PrincipalInterfaceIU.class,args);
+        //RegisterIU.launch(RegisterIU.class, args);
     }
 }

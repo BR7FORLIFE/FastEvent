@@ -86,14 +86,14 @@ public class DisponibilityOfEvent {
         hall1.setMinWidth(300);
         hall1.setMaxHeight(500);
         hall1.setAlignment(Pos.TOP_CENTER);
-        hall1.setStyle("-fx-background-color: #1077eb");
+        hall1.setStyle("-fx-background-color:rgb(11, 200, 243)");
         hall1.setClip(rectangle1);
         VBox.setMargin(imageContent1, new Insets(30, 0, 10, 0));
 
         hall2.setMinWidth(300);
         hall2.setMaxHeight(500);
         hall2.setAlignment(Pos.TOP_CENTER);
-        hall2.setStyle("-fx-background-color: #8410eb");
+        hall2.setStyle("-fx-background-color:rgb(150, 100, 238)");
         hall2.setClip(rectangle2);
         VBox.setMargin(imageContent2, new Insets(30, 0, 10, 0));
 

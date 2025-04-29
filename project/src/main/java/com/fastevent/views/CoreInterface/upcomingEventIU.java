@@ -104,7 +104,7 @@ public class UpcomingEventIU {
 
         container2.setMaxWidth(700);
         container2.setMinHeight(200);
-        container2.setStyle("-fx-background-color:rgb(176, 162, 255)");
+        container2.setStyle("-fx-background-color:rgb(141, 124, 241)");
         container2.setAlignment(Pos.CENTER);
         container2.setClip(rectangle2);
         container2.setEffect(dropShadow);
