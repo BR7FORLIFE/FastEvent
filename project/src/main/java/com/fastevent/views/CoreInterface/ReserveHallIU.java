@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class SearchPublicationIU {
+public class ReserveHallIU {
     private static PathConst pathConst = new PathConst();
     private static ArrayList<HBox> hboxHallsList = new ArrayList<>();
 

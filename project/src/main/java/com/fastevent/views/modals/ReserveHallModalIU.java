@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class SearchPublicationModal {
+public class ReserveHallModalIU {
     private static PathConst pathConst = new PathConst();
 
     public static void modal(Stage fatherStage, Hall hall) {
@@ -35,7 +35,7 @@ public class SearchPublicationModal {
         Label cellphone = new Label(String.valueOf("Telefono: " + hall.getCellphone()));
         Label price = new Label(String.valueOf("Precio: " + hall.getPriceOfHall() + " COP"));
         Button saveHall = new Button("Guardar en Favoritos");
-        Button selectHall = new Button("Confirmar salón");
+        Button selectHall = new Button("Reservar Salon");
 
         GridPane gridPane = new GridPane();
         gridPane.add(imageView, 0, 0);
@@ -72,7 +72,7 @@ public class SearchPublicationModal {
 
         Scene scene = new Scene(gridPane, 400, 400);
 
-        stageModal.setTitle("SearchPublicationModal");
+        stageModal.setTitle("Reserve Event Hall");
         stageModal.setScene(scene);
         stageModal.setWidth(400);
         stageModal.setHeight(400);

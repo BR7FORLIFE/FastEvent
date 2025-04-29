@@ -3,8 +3,8 @@ package com.fastevent.views.CoreInterface;
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.simpleClasses.Hall;
 import com.fastevent.components.ResetStyleButtons;
-import com.fastevent.controller.core.SearchHallController;
-import com.fastevent.views.modals.SearchPublicationModal;
+import com.fastevent.controller.core.ReserveHallController;
+import com.fastevent.views.modals.ReserveHallModalIU;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -78,6 +78,7 @@ public class PrincipalInterfaceIU extends Application {
         // contenedores hijos al stackpane
         VBox aside = new VBox();
         VBox main = new VBox();
+        //ScrollPane scrollPane = new ScrollPane();
         HBox root = new HBox(aside, main);
 
         // configuracion de los contenedores hijos
@@ -106,14 +107,14 @@ public class PrincipalInterfaceIU extends Application {
             main.setAlignment(Pos.TOP_CENTER);
             ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, nextHall); // reseteamos los estilos
             main.getChildren().clear(); // limpiamos los nodos anteriores que tuvo el main container
-            SearchPublicationIU.getNodes(); // obtenemos la lista de nodos para mostrar en el campo
+            ReserveHallIU.getNodes(); // obtenemos la lista de nodos para mostrar en el campo
             searchHallOfEvent.getStyleClass().remove("button-desactive"); // removemos el estilo desactive
             searchHallOfEvent.getStyleClass().add("button-active");
 
             // iteramos por cada nodo devuelto por getNodes()
-            for (int hboxindex = 0; hboxindex < SearchPublicationIU.getSizeVboxHallsList(); hboxindex++) {
+            for (int hboxindex = 0; hboxindex < ReserveHallIU.getSizeVboxHallsList(); hboxindex++) {
                 // obtenemos cada contenedor de Search publication
-                HBox container = (HBox) SearchPublicationIU.getNodes().get(hboxindex);
+                HBox container = (HBox) ReserveHallIU.getNodes().get(hboxindex);
                 container.setOpacity(0); // ponemos la opacidad en 0
 
                 // accedemos al primer hijo de cada container que es el GridPane
@@ -140,8 +141,8 @@ public class PrincipalInterfaceIU extends Application {
                 if (selectHall != null) {
                     final int state = hboxindex;
                     selectHall.setOnAction(event -> {
-                        Hall hall = SearchHallController.getHallById(state);
-                        SearchPublicationModal.modal(principalInterfaceStage, hall);
+                        Hall hall = ReserveHallController.getHallById(state);
+                        ReserveHallModalIU.modal(principalInterfaceStage, hall);
                     });
                 }
 

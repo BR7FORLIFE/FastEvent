@@ -38,8 +38,6 @@
         </dependency>
 
 
-       
-
         <dependency>
             <groupId>org.jfxcore</groupId>
             <artifactId>javafx-graphics</artifactId>

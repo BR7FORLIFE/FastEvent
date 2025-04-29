@@ -1,7 +1,7 @@
 .grid{
     -fx-background-color: transparent;
     -fx-border-width: 2px;
-    -fx-border-color: rgb(0, 0, 0);
+    -fx-border-color: rgb(255, 255, 255);
     -fx-border-style:solid;
     -fx-padding: 20px 30px;
     -fx-border-radius: 6px;
