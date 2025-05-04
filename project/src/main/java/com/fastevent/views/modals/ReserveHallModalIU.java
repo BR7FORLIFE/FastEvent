@@ -3,7 +3,6 @@ package com.fastevent.views.modals;
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.constants.StylesConst;
 import com.fastevent.common.simpleClasses.Hall;
-import com.fastevent.controller.core.ReserveHallController;
 import com.fastevent.views.CoreInterface.FavoritesOfHallIU;
 
 import javafx.geometry.Pos;
@@ -18,7 +17,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ReserveHallModalIU {
-    private static PathConst pathConst = new PathConst();
+    private static final PathConst pathConst = new PathConst();
 
     public static void modal(Stage fatherStage, Hall hall, HBox currentHBox, int index) {
         Stage stageModal = new Stage();
@@ -73,8 +72,7 @@ public class ReserveHallModalIU {
 
         //eventos de los botones
         saveToFavorites.setOnAction(e -> {
-            Hall currentHall = ReserveHallController.getHallById(index);
-            FavoritesOfHallIU.favoritesHallRendering(currentHall);
+            FavoritesOfHallIU.favoritesHallRendering(hall,currentHBox,index);
             stageModal.close();
         });
 

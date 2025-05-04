@@ -306,7 +306,7 @@ public class PrincipalInterfaceIU extends Application {
 
                 // si tenemos el boton
                 if (removeToFavorites != null) {
-                    final int stateIndex = hboxindex; // establecemos indice
+                    // final int stateIndex = hboxindex; // establecemos indice
                     removeToFavorites.setOnAction(event -> {
                         System.out.println("Ha sido presionado el boton de eliminar de favoritos");
                     });

@@ -25,7 +25,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class RegisterIU extends Application {
-    private PathConst pathConst = new PathConst();
+    private final PathConst pathConst = new PathConst();
 
     @Override
     public void start(Stage registerStage) {

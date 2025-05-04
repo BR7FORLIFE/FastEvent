@@ -16,12 +16,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+//esta clase es la encargda de mostrar las cards de los eventos proximos a realizarse!
 public class UpcomingEventIU {
-    private static PathConst pathConst = new PathConst();
-    private static ArrayList<HBox> containers = new ArrayList<>();
+    private static final PathConst pathConst = new PathConst();
+    private static final ArrayList<HBox> containers = new ArrayList<>();
 
     public static ArrayList<HBox> upcomingEvent() {
-        containers.clear();
+        containers.clear(); //limpiamos el arrayList cada vez que llamamos al metodo
 
         //clip 
         Rectangle rectangle1 = new Rectangle();
@@ -30,6 +31,7 @@ public class UpcomingEventIU {
         rectangle1.setWidth(750);
         rectangle1.setHeight(250);
 
+        //clips
         Rectangle rectangle2 = new Rectangle();
         rectangle2.setArcHeight(12);
         rectangle2.setArcWidth(12);
@@ -51,6 +53,7 @@ public class UpcomingEventIU {
 
         Label upcoming = new Label("upcoming");
 
+        //contenedores y imagenes 
         Image image1 = new Image(pathConst.getFestivalCaribeImage());
         ImageView imageView1 = new ImageView(image1);
         Label title1 = new Label("Festival de musica del caribe");
@@ -72,6 +75,7 @@ public class UpcomingEventIU {
         VBox info3 = new VBox(title3, description3, upcoming);
         VBox imageContainer3 = new VBox(imageView3);
 
+        //ancho , alto y aspect ratio
         imageView1.setFitWidth(150);
         imageView1.setFitHeight(150);
         imageView1.setPreserveRatio(true);
@@ -84,12 +88,13 @@ public class UpcomingEventIU {
         imageView3.setFitHeight(250);
         imageView3.setPreserveRatio(true);
 
+        //for -each que aplica estilos para los labels
         for (Label label : new Label[] {
                 upcoming, title1, title2, title3, description1, description2, description3
         }) {
             label.setStyle(StylesConst.getStyleForLabels());
         }
-
+        //los 3 contenedores para las distintas cards
         HBox container1 = new HBox(info1, imageContainer1);
         HBox container2 = new HBox(info2, imageContainer2);
         HBox container3 = new HBox(info3, imageContainer3);
@@ -145,6 +150,6 @@ public class UpcomingEventIU {
         containers.add(container2);
         containers.add(container3);
 
-        return containers;
+        return containers; //retornamos las 3 cards!
     }
 }

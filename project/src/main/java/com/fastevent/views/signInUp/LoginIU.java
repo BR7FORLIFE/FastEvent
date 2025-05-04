@@ -23,7 +23,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class LoginIU extends Application {
-    private PathConst pathConst = new PathConst();
+    private final PathConst pathConst = new PathConst();
 
     @Override
     public void start(Stage LoginStage) {
