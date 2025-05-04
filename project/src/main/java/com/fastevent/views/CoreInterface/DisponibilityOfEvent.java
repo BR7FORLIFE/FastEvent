@@ -18,7 +18,7 @@ import javafx.scene.shape.Rectangle;
 //esta clase es la section de los eventos disponibles que se estan dando actualmente en la ciudad
 public class DisponibilityOfEvent {
     // accedemos a las contantes ya defindas
-    private static PathConst pathConst = new PathConst();
+    private static final PathConst pathConst = new PathConst();
 
     // este metodo retorna un HBox que nos permite ver los eventos disponibles
     public static HBox disponibilityOfHall() {

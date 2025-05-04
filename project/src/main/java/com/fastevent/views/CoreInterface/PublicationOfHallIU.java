@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 
 //esta es la vista a la hora de subir un salon de eventos
 public class PublicationOfHallIU {
-        private static PathConst pathConst = new PathConst();
+        private static final PathConst pathConst = new PathConst();
 
         public static HBox publicateHall() {
                 Image image = new Image(pathConst.getPlusImage());

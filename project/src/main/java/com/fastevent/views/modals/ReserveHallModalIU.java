@@ -3,6 +3,7 @@ package com.fastevent.views.modals;
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.constants.StylesConst;
 import com.fastevent.common.simpleClasses.Hall;
+import com.fastevent.controller.core.ReserveHallController;
 import com.fastevent.views.CoreInterface.FavoritesOfHallIU;
 
 import javafx.geometry.Pos;
@@ -19,7 +20,7 @@ import javafx.stage.Stage;
 public class ReserveHallModalIU {
     private static PathConst pathConst = new PathConst();
 
-    public static void modal(Stage fatherStage, Hall hall, HBox currentHBox) {
+    public static void modal(Stage fatherStage, Hall hall, HBox currentHBox, int index) {
         Stage stageModal = new Stage();
         stageModal.initModality(Modality.WINDOW_MODAL);// aca decimos que la modalidad es que sea una modal
         stageModal.initOwner(fatherStage);
@@ -72,7 +73,8 @@ public class ReserveHallModalIU {
 
         //eventos de los botones
         saveToFavorites.setOnAction(e -> {
-            FavoritesOfHallIU.favoritesHallRendering(currentHBox);
+            Hall currentHall = ReserveHallController.getHallById(index);
+            FavoritesOfHallIU.favoritesHallRendering(currentHall);
             stageModal.close();
         });
 

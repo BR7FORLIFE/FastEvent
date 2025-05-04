@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 // esta clase nos permite registrar al usuario en el modelo siguiendo en el
 // formulario
 public class RegisterControler {
-    private static PathConst pathConst = new PathConst(); // nos permite acceder a las constantes ya definidas
+    private static final PathConst pathConst = new PathConst(); // nos permite acceder a las constantes ya definidas
 
     // constructor vacio para poder instanciar la clase, no es necesario colocarla
     // pero es para que se vea vistoso
@@ -62,7 +62,7 @@ public class RegisterControler {
                 throw new Exceptions.NotCorrectFormat();
             }
 
-            Long.parseLong(cellphone);/* hacemos el parse a long si ocurre algun error irá al catch */
+            Long.valueOf(cellphone);/* hacemos el parse a long si ocurre algun error irá al catch */
 
             // validamos que el campo contraseña sea igual al confirmar contraseña
             if (!password.equals(confirmPassword)) {
@@ -86,7 +86,7 @@ public class RegisterControler {
             // destruimos y pasamos al siguiente frame
             NextFrame.nextFrameDuration(currentFrame, LoginIU.class, 1);
 
-        } catch (Exception e) {
+        } catch (Exceptions.NotCorrectFormat | NumberFormatException e) {
             System.out.println(e.getMessage());
         }
     }

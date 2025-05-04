@@ -17,9 +17,9 @@ import com.google.gson.JsonObject;
 public class PrincipalController {
 
     // accdemos a las diferentes constantes
-    private static PathConst pathConst = new PathConst();
+    private static final PathConst pathConst = new PathConst();
     // es un arrayList de Hall para poder guardar la informacion mas facilmente
-    private static ArrayList<Hall> hallInformation = new ArrayList<>();
+    private static final ArrayList<Hall> hallInformation = new ArrayList<>();
 
     // incializar las variables para tener un salon por lo menos la informacion
     // basica

@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 /* esta clase nos permite iniciar sesion al usuario con su nameUser y password previamente */
 public class LoginController {
-    private static PathConst pathConst = new PathConst();
+    private static final PathConst pathConst = new PathConst();
     private static String userField;
     private static String passwordField;
 
