@@ -36,7 +36,8 @@ public class PublicationOfHallIU {
 
                 // estilos de los labels
                 for (Label label : new Label[] {
-                                nameOfHallLabel, descriptionOfHallLabel, ubicationOfHallLabel, capacityOfHallLabel, dimensionOfHallLabel, cellphoneOfHallLabel, priceOfHallLabel
+                                nameOfHallLabel, descriptionOfHallLabel, ubicationOfHallLabel, capacityOfHallLabel,
+                                dimensionOfHallLabel, cellphoneOfHallLabel, priceOfHallLabel
                 }) {
                         label.setStyle(StylesConst.getStyleForLabels());
                 }
@@ -51,7 +52,8 @@ public class PublicationOfHallIU {
                 TextField priceOfHallField = new TextField();
 
                 for (TextField textField : new TextField[] {
-                                nameOfHallField, descriptionOfHallField, ubicationOfHallField, capacityOfHallField, dimensionOfHallField,cellphoneOfHallField, priceOfHallField
+                                nameOfHallField, descriptionOfHallField, ubicationOfHallField, capacityOfHallField,
+                                dimensionOfHallField, cellphoneOfHallField, priceOfHallField
                 }) {
                         textField.setStyle(
                                         "-fx-font-size: 13px; -fx-font-weight: 600; -fx-font-family: Cambria; -fx-border-radius: 6px; -fx-border-color:rgb(255, 255, 255); -fx-border-width: 3px; -fx-background-color: white;-fx-text-fill: black");
@@ -72,7 +74,7 @@ public class PublicationOfHallIU {
                 asideIzq.add(ubicationOfHallLabel, 0, 2);
                 asideIzq.add(ubicationOfHallField, 1, 2);
                 asideIzq.add(capacityOfHallLabel, 0, 3);
-                asideIzq.add(capacityOfHallField, 1, 3);        
+                asideIzq.add(capacityOfHallField, 1, 3);
                 asideIzq.add(dimensionOfHallLabel, 0, 4);
                 asideIzq.add(dimensionOfHallField, 1, 4);
                 asideIzq.add(cellphoneOfHallLabel, 0, 5);
@@ -117,7 +119,12 @@ public class PublicationOfHallIU {
 
                 // eventos del boton
                 publicateButton.setOnAction(e -> {
-                        PublicateHallController.comprobateInformation(nameOfHallField,descriptionOfHallField,ubicationOfHallField,capacityOfHallField,dimensionOfHallField,cellphoneOfHallField,priceOfHallField);
+                        publicateButton.setDisable(false);
+                        PublicateHallController.comprobateInformation(nameOfHallField, descriptionOfHallField,
+                                        ubicationOfHallField, capacityOfHallField, dimensionOfHallField,
+                                        cellphoneOfHallField, priceOfHallField);
+
+                        publicateButton.setDisable(true);
                 });
 
                 fatherContainer.setMaxWidth(700);

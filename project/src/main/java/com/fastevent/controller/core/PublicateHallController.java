@@ -60,6 +60,7 @@ public class PublicateHallController {
         newPublication.addProperty("cellphone", (long) informationTohall[5]);
         newPublication.addProperty("price", (float) informationTohall[6]);
         newPublication.addProperty("valoration", Math.random() * 6.0);
+        newPublication.addProperty("timezone", "");
 
         publicationArray.add(newPublication);
 

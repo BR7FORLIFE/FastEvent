@@ -28,9 +28,10 @@ public class ReserveHallController {
             Long cellphoneHall = selectHall.get("cellphone").getAsLong();
             float priceOfHall = selectHall.get("price").getAsFloat();
             float valorationHall = selectHall.get("valoration").getAsFloat();
+            String timezone = selectHall.get("timezone").getAsString();
 
             hall = new Hall(nameHall, descriptionHall, ubicationHall, capacityHall, dimensionHall, cellphoneHall,
-                    priceOfHall, valorationHall);
+                    priceOfHall, valorationHall,timezone);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

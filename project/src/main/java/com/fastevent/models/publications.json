@@ -8,7 +8,8 @@
       "dimension": 375,
       "cellphone": 3114567892,
       "price": 750.000,
-      "valoration": 4.8
+      "valoration": 4.8,
+      "timezone": ""
     },
     {
       "name": "Terraza El Encanto",
@@ -18,7 +19,8 @@
       "dimension": 180,
       "cellphone": 3101234567,
       "price": 400.000,
-      "valoration": 4.5
+      "valoration": 4.5,
+      "timezone": ""
     }
   ]
 }

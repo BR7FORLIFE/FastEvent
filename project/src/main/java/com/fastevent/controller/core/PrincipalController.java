@@ -23,7 +23,7 @@ public class PrincipalController {
 
     // incializar las variables para tener un salon por lo menos la informacion
     // basica
-    private static String name, description, ubication;
+    private static String name, description, ubication, timezone;
     private static Integer capacity, dimension;
     private static Long cellphone;
     private static Float price, valoration;
@@ -58,6 +58,7 @@ public class PrincipalController {
                 cellphone = singlePublicationHall.get("cellphone").getAsLong();
                 price = singlePublicationHall.get("price").getAsFloat();
                 valoration = singlePublicationHall.get("valoration").getAsFloat();
+                timezone = singlePublicationHall.get("timezone").getAsString();
 
                 /*
                  * almacenamos dichos valores dentro del array de salones donde creamos una
@@ -66,7 +67,7 @@ public class PrincipalController {
                  * y valoration
                  */
                 hallInformation.add(
-                        new Hall(name, description, ubication, capacity, dimension, cellphone, price, valoration));
+                        new Hall(name, description, ubication, capacity, dimension, cellphone, price, valoration,timezone));
             }
 
         } catch (Exception e) {

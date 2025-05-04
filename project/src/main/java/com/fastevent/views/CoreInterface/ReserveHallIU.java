@@ -11,6 +11,7 @@ import com.fastevent.controller.core.PrincipalController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -39,6 +40,7 @@ public class ReserveHallIU {
                 Label labelCapacity = new Label("Aforo: ");
                 Label labelDimensions = new Label("Dimensiones: ");
                 Label labelCellphone = new Label("Teléfono: ");
+                Label labelZoneHour = new Label("Zona Horaria: ");
 
                 Label nameLabel = new Label(hallSingle.getNameOfHall());
                 Label descriptionLabel = new Label(hallSingle.getDescription());
@@ -48,6 +50,13 @@ public class ReserveHallIU {
                 Label cellphoneLabel = new Label(String.valueOf(hallSingle.getCellphone()));
                 Label priceLabel = new Label(String.valueOf(hallSingle.getPriceOfHall()));
                 Label valorationLabel = new Label(String.valueOf(hallSingle.getValorationOfHall()));
+                ChoiceBox<String> timeZone = new ChoiceBox<>();
+
+                //configuracion de choiceBox (timeZone)
+                timeZone.getItems().addAll("6:00am - 8:00am", "8:00am - 10:00am","10:30am - 12:00pm","1:00pm - 3:00pm","3:00pm - 5:00pm","5:15pm - 7:30pm", "7:30pm - 10:30pm");
+                timeZone.setValue("6:00am - 8:00am");
+
+                nameLabel.setStyle(StylesConst.getStyleForLabelsTitle());
 
                 List<Label> dataLabels = List.of(descriptionLabel, ubicationLabel,
                         capacityLabel, dimensionLabel, cellphoneLabel,
@@ -56,12 +65,12 @@ public class ReserveHallIU {
                 for (Label label : dataLabels) {
                     label.setStyle(String.format("%s", StylesConst.getStyleForLabels()));
                 }
-                nameLabel.setStyle(StylesConst.getStyleForLabelsTitle());
-                labelUbication.setStyle(StylesConst.getFontweightToLabel());
-                labelPrice.setStyle(StylesConst.getFontweightToLabel());
-                labelDimensions.setStyle(StylesConst.getFontweightToLabel());
-                labelCellphone.setStyle(StylesConst.getFontweightToLabel());
-                labelCapacity.setStyle(StylesConst.getFontweightToLabel());
+
+                for (Label label : new Label[] {
+                        labelUbication, labelPrice, labelCapacity, labelDimensions, labelCellphone, labelZoneHour
+                }) {
+                    label.setStyle(StylesConst.getFontweightToLabel());
+                }
 
                 Image image = new Image(pathConst.getLogoFastEvent());
                 ImageView imageView = new ImageView(image);
@@ -91,14 +100,16 @@ public class ReserveHallIU {
                 infoGrid.add(dimensionLabel, 1, 4);
                 infoGrid.add(labelCellphone, 0, 5);
                 infoGrid.add(cellphoneLabel, 1, 5);
-                infoGrid.add(selectHall, 0, 6);
+                infoGrid.add(labelZoneHour, 0, 6);
+                infoGrid.add(timeZone, 1, 6);
+                infoGrid.add(selectHall, 0, 7);
 
                 GridPane.setMargin(selectHall, new Insets(10, 0, 0, 55));
 
                 HBox fatherContainer = new HBox();
                 fatherContainer.getChildren().addAll(infoGrid, imageContainer);
                 fatherContainer.setMaxWidth(700);
-                fatherContainer.setMinHeight(200);
+                fatherContainer.setMinHeight(250);
                 fatherContainer.setAlignment(Pos.CENTER);
                 fatherContainer.setStyle(StylesConst.getStyleFatherContainer());
                 fatherContainer.setClip(rectangle);

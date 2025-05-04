@@ -23,6 +23,7 @@ public class Hall {
     private Long cellphone;
     private float priceOfHall;
     private float valorationOfHall;
+    private String timezone;
 
     /**
      * constructor de la clase salon
@@ -37,7 +38,7 @@ public class Hall {
      * @param valorationOfHall
      */
     public Hall(String nameOfHall, String description, String ubicationOfHall, Integer capacity, Integer dimension,
-            Long cellphone, float priceOfHall, float valorationOfHall) {
+            Long cellphone, float priceOfHall, float valorationOfHall, String timezone) {
         this.nameOfHall = nameOfHall;
         this.description = description;
         this.ubicationOfHall = ubicationOfHall;
@@ -46,6 +47,7 @@ public class Hall {
         this.cellphone = cellphone;
         this.priceOfHall = priceOfHall;
         this.valorationOfHall = valorationOfHall;
+        this.timezone = timezone;
     }
 
     // getters y setters de la clase salon
@@ -86,6 +88,10 @@ public class Hall {
         this.valorationOfHall = valorationOfHall;
     }
 
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
     public String getNameOfHall() {
         return nameOfHall;
     }
@@ -116,5 +122,9 @@ public class Hall {
 
     public float getValorationOfHall() {
         return valorationOfHall;
+    }
+
+    public String getTimezone() {
+        return timezone;
     }
 }

@@ -3,6 +3,7 @@ package com.fastevent.views.modals;
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.constants.StylesConst;
 import com.fastevent.common.simpleClasses.Hall;
+import com.fastevent.views.CoreInterface.FavoritesOfHallIU;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,13 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ReserveHallModalIU {
     private static PathConst pathConst = new PathConst();
 
-    public static void modal(Stage fatherStage, Hall hall) {
+    public static void modal(Stage fatherStage, Hall hall, HBox currentHBox) {
         Stage stageModal = new Stage();
         stageModal.initModality(Modality.WINDOW_MODAL);// aca decimos que la modalidad es que sea una modal
         stageModal.initOwner(fatherStage);
@@ -34,8 +36,8 @@ public class ReserveHallModalIU {
         Label dimension = new Label(String.valueOf("Dimension: " + hall.getDimension() + " metros cradrados!"));
         Label timeZone = new Label("Rango Horario: ");
         Label price = new Label(String.valueOf("Precio: " + hall.getPriceOfHall() + " COP"));
-        Button saveHall = new Button("Guardar en Favoritos");
-        Button selectHall = new Button("Reservar Salon");
+        Button saveToFavorites = new Button("Guardar en Favoritos");
+        Button reserve = new Button("Reservar Salon");
 
         GridPane gridPane = new GridPane();
         gridPane.add(imageView, 0, 0);
@@ -44,8 +46,8 @@ public class ReserveHallModalIU {
         gridPane.add(dimension, 0, 3);
         gridPane.add(timeZone, 0, 4);
         gridPane.add(price, 0, 5);
-        gridPane.add(saveHall, 0, 6);
-        gridPane.add(selectHall, 1, 6);
+        gridPane.add(saveToFavorites, 0, 6);
+        gridPane.add(reserve, 1, 6);
 
         GridPane.setColumnSpan(imageView, 2);
         GridPane.setColumnSpan(title, 2);
@@ -65,8 +67,18 @@ public class ReserveHallModalIU {
             label.setStyle(StylesConst.getStyleForLabels());
         }
 
-        saveHall.setStyle(StylesConst.getStyleSelectHall());
-        selectHall.setStyle(StylesConst.getStyleSelectHall());
+        saveToFavorites.setStyle(StylesConst.getStyleSelectHall());
+        reserve.setStyle(StylesConst.getStyleSelectHall());
+
+        //eventos de los botones
+        saveToFavorites.setOnAction(e -> {
+            FavoritesOfHallIU.favoritesHallRendering(currentHBox);
+            stageModal.close();
+        });
+
+        reserve.setOnAction(e -> {
+
+        });
 
         // estilo de la grilla
         gridPane.setStyle(StylesConst.getStyleFatherContainer());

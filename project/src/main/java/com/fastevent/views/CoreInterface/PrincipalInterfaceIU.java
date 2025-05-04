@@ -42,39 +42,33 @@ public class PrincipalInterfaceIU extends Application {
         contentLogo.setFitHeight(300);
         contentLogo.setPreserveRatio(true);
 
-        Button searchHallOfEvent = new Button("Buscar Salón de eventos");
+        Button searchHallOfEvent = new Button("Reservar Salón de eventos");
         Button publicationOfHall = new Button("Publicar Salón de eventos");
         Button disponibilityOfHall = new Button("Eventos disponibles actualmente");
         Button nextHall = new Button("Eventos próximos a realizarse");
+        Button favoritesHall = new Button("Favoritos");
 
-        VBox.setMargin(searchHallOfEvent, new Insets(50, 0, 50, 0));
+        VBox.setMargin(searchHallOfEvent, new Insets(0, 0, 50, 0));
         VBox.setMargin(publicationOfHall, new Insets(0, 0, 50, 0));
         VBox.setMargin(disponibilityOfHall, new Insets(0, 0, 50, 0));
-        VBox.setMargin(nextHall, new Insets(0, 0, 0, 0));
+        VBox.setMargin(nextHall, new Insets(0, 0, 50, 0));
+        VBox.setMargin(favoritesHall, new Insets(0, 0, 50, 0));
 
-        searchHallOfEvent.setMaxWidth(250);
-        searchHallOfEvent.setMinHeight(40);
-
-        publicationOfHall.setMaxWidth(250);
-        publicationOfHall.setMinHeight(40);
-
-        disponibilityOfHall.setMaxWidth(250);
-        disponibilityOfHall.setMinHeight(40);
-
-        nextHall.setMaxWidth(250);
-        nextHall.setMinHeight(40);
-
-        searchHallOfEvent.getStyleClass().add("button-desactive");
-        publicationOfHall.getStyleClass().add("button-desactive");
-        disponibilityOfHall.getStyleClass().add("button-desactive");
-        nextHall.getStyleClass().add("button-desactive");
+        for (Button button : new Button[] {
+                searchHallOfEvent, publicationOfHall, disponibilityOfHall, nextHall, favoritesHall
+        }) {
+            button.setMaxWidth(250);
+            button.setMinHeight(40);
+            button.getStyleClass().add("button-desactive");
+        }
 
         VBox aside = new VBox();
         VBox main = new VBox();
         ScrollPane scrollPane = new ScrollPane();
         HBox root = new HBox(aside, scrollPane);
 
-        aside.getChildren().addAll(contentLogo, searchHallOfEvent, publicationOfHall, disponibilityOfHall, nextHall);
+        aside.getChildren().addAll(contentLogo, searchHallOfEvent, publicationOfHall, disponibilityOfHall, nextHall,
+                favoritesHall);
         aside.setMinSize(300, 700);
         aside.getStyleClass().add("aside");
         aside.setAlignment(Pos.TOP_CENTER);
@@ -100,7 +94,7 @@ public class PrincipalInterfaceIU extends Application {
 
         searchHallOfEvent.setOnAction(e -> {
             main.setAlignment(Pos.TOP_CENTER);
-            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, nextHall);
+            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, nextHall,favoritesHall);
             main.getChildren().clear();
             ReserveHallIU.getNodes();
             searchHallOfEvent.getStyleClass().remove("button-desactive");
@@ -123,7 +117,7 @@ public class PrincipalInterfaceIU extends Application {
                     final int state = hboxindex;
                     selectHall.setOnAction(event -> {
                         Hall hall = ReserveHallController.getHallById(state);
-                        ReserveHallModalIU.modal(principalInterfaceStage, hall);
+                        ReserveHallModalIU.modal(principalInterfaceStage, hall, container);
                     });
                 }
 
@@ -140,7 +134,7 @@ public class PrincipalInterfaceIU extends Application {
 
         publicationOfHall.setOnAction(e -> {
             main.setAlignment(Pos.CENTER);
-            ResetStyleButtons.reset(searchHallOfEvent, disponibilityOfHall, nextHall);
+            ResetStyleButtons.reset(searchHallOfEvent, disponibilityOfHall, nextHall, favoritesHall);
             publicationOfHall.getStyleClass().remove("button-desactive");
             publicationOfHall.getStyleClass().add("button-active");
             HBox node = PublicationOfHallIU.publicateHall();
@@ -159,7 +153,7 @@ public class PrincipalInterfaceIU extends Application {
 
         disponibilityOfHall.setOnAction(e -> {
             main.setAlignment(Pos.CENTER);
-            ResetStyleButtons.reset(publicationOfHall, searchHallOfEvent, nextHall);
+            ResetStyleButtons.reset(publicationOfHall, searchHallOfEvent, nextHall, favoritesHall);
             disponibilityOfHall.getStyleClass().remove("button-desactive");
             disponibilityOfHall.getStyleClass().add("button-active");
             main.getChildren().clear();
@@ -176,18 +170,62 @@ public class PrincipalInterfaceIU extends Application {
 
         nextHall.setOnAction(e -> {
             main.setAlignment(Pos.CENTER);
-            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, searchHallOfEvent);
+            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, searchHallOfEvent, favoritesHall);
             nextHall.getStyleClass().remove("button-desactive");
             nextHall.getStyleClass().add("button-active");
             main.getChildren().clear();
             for (HBox node : UpcomingEventIU.upcomingEvent()) {
-                VBox.setMargin(node, new Insets(10, 5, 10, 0));
+                VBox.setMargin(node, new Insets(5, 5, 10, 0));
                 FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1));
                 fadeTransition.setFromValue(0);
                 fadeTransition.setToValue(1);
                 fadeTransition.setNode(node);
                 fadeTransition.play();
                 main.getChildren().addAll(node);
+            }
+        });
+
+        favoritesHall.setOnAction(e ->{
+            main.setAlignment(Pos.TOP_CENTER);
+            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, nextHall,searchHallOfEvent);
+            favoritesHall.getStyleClass().remove("button-desactive");
+            favoritesHall.getStyleClass().add("button-active");
+            main.getChildren().clear();
+
+            for (int hboxindex = 0; hboxindex < FavoritesOfHallIU.getSizeFavoritesHalls(); hboxindex++) {
+                HBox container = (HBox) FavoritesOfHallIU.hallsContainersFavorites().get(hboxindex);
+                container.setOpacity(0);
+                GridPane childrenGrid = (GridPane) container.getChildren().get(0);
+                Button removeToFavorites = null;
+
+                int secondButton = 1; //esto es una bandera para yo poder recuperar el segundo botón
+
+                for (Node child : childrenGrid.getChildren()) {
+                    if (child instanceof Button) {
+                        secondButton++;
+
+                        if (secondButton == 2) {
+                            removeToFavorites = (Button) child;
+                            break;
+                        }
+                    }
+                }
+
+                if (removeToFavorites != null) {
+                    final int state = hboxindex;
+                    removeToFavorites.setOnAction(event -> {
+                        System.out.println("Ha sido presionado el boton de eliminar de favoritos");
+                    });
+                }
+
+                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), container);
+                fadeTransition.setFromValue(0.0);
+                fadeTransition.setToValue(1.0);
+                fadeTransition.setDelay(Duration.seconds(hboxindex * 0.2));
+
+                VBox.setMargin(container, new Insets(10, 0, 5, 0));
+                main.getChildren().addAll(container);
+                fadeTransition.play();
             }
         });
 
