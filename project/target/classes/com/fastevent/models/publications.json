@@ -7,7 +7,7 @@
       "capacity": 80,
       "dimension": 375,
       "cellphone": 3114567892,
-      "price": 750.000,
+      "price": 750000,
       "valoration": 4.8,
       "timezone": ""
     },
@@ -18,7 +18,7 @@
       "capacity": 80,
       "dimension": 180,
       "cellphone": 3101234567,
-      "price": 400.000,
+      "price": 400000,
       "valoration": 4.5,
       "timezone": ""
     }

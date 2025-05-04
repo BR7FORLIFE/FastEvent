@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class ReserveHallModalIU {
     private static final PathConst pathConst = new PathConst();
 
-    public static void modal(Stage fatherStage, Hall hall, HBox currentHBox, int index) {
+    public static void modal(Stage fatherStage, Hall hall, HBox currentHBox, int index, Runnable refreshMain) {
         Stage stageModal = new Stage();
         stageModal.initModality(Modality.WINDOW_MODAL);// aca decimos que la modalidad es que sea una modal
         stageModal.initOwner(fatherStage);
@@ -72,7 +72,7 @@ public class ReserveHallModalIU {
 
         //eventos de los botones
         saveToFavorites.setOnAction(e -> {
-            FavoritesOfHallIU.favoritesHallRendering(hall,currentHBox,index);
+            FavoritesOfHallIU.favoritesHallRendering(hall,currentHBox,index, refreshMain);
             stageModal.close();
         });
 

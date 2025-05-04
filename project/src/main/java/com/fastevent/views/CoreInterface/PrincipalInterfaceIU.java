@@ -61,11 +61,11 @@ public class PrincipalInterfaceIU extends Application {
         Button favoritesHall = new Button("Favoritos"); // boton de favoritos
 
         // estos son los diferentes margenes para los distintos botones
-        VBox.setMargin(searchHallOfEvent, new Insets(0, 0, 50, 0));
-        VBox.setMargin(publicationOfHall, new Insets(0, 0, 50, 0));
-        VBox.setMargin(disponibilityOfHall, new Insets(0, 0, 50, 0));
-        VBox.setMargin(nextHall, new Insets(0, 0, 50, 0));
-        VBox.setMargin(favoritesHall, new Insets(0, 0, 50, 0));
+        for (Node node : new Node[] {
+                searchHallOfEvent, publicationOfHall, disponibilityOfHall, nextHall, favoritesHall
+        }) {
+            VBox.setMargin(node, new Insets(0, 0, 50, 0));
+        }
 
         // esto es una espeche de for-each donde para cada boton le aplicamos los
         // siguientes metodos:
@@ -133,7 +133,14 @@ public class PrincipalInterfaceIU extends Application {
          * aca vemos las diferentes logicas para los distintos botones
          */
 
-        searchHallOfEvent.setOnAction(e -> { // definimos el evento para el boton de buscar
+        searchHallOfEvent.setOnAction(e -> {
+
+            Runnable refreshIU = () -> {
+                favoritesLayoutAndLogic(main, favoritesHall, publicationOfHall, disponibilityOfHall, nextHall,
+                        searchHallOfEvent);
+            };
+
+            // definimos el evento para el boton de buscar
             main.setAlignment(Pos.TOP_CENTER);// alineamos los elementos del main en lo alto del todo
 
             // reseteamos estilos CSS
@@ -183,7 +190,7 @@ public class PrincipalInterfaceIU extends Application {
                         Hall hall = ReserveHallController.getHallById(stateIndex);
 
                         /* le pasamos los diferentes parametros a la modal */
-                        ReserveHallModalIU.modal(principalInterfaceStage, hall, container, stateIndex);
+                        ReserveHallModalIU.modal(principalInterfaceStage, hall, container, stateIndex, refreshIU);
                     });
                 }
                 // aplicamos un efecto de fadeTransition con una duracion de 0.5 y el contedor
@@ -275,53 +282,8 @@ public class PrincipalInterfaceIU extends Application {
 
         // boton de los favoritos
         favoritesHall.setOnAction((var e) -> {
-            main.setAlignment(Pos.TOP_CENTER); // alineamos al centr0
-            ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, nextHall, searchHallOfEvent);
-            favoritesHall.getStyleClass().remove("button-desactive");
-            favoritesHall.getStyleClass().add("button-active");
-            main.getChildren().clear(); // limpiamos el main
-
-            // iteramos los diferentes HBox que son los salones que son favoritos por el
-            // usuario
-            for (int hboxindex = 0; hboxindex < FavoritesOfHallIU.getSizeFavoritesHalls(); hboxindex++) {
-                // obtenemos cada uno de los salones favoritos
-                HBox container = (HBox) FavoritesOfHallIU.hallsContainersFavorites().get(hboxindex);
-                container.setOpacity(0); // establecemos opacidad a 0
-                GridPane childrenGrid = (GridPane) container.getChildren().get(0);
-                Button removeToFavorites = null; // misma logica para el boton de remover de favoritos
-
-                int secondButton = 1; // esto es una bandera para yo poder recuperar el segundo botón
-
-                for (Node child : childrenGrid.getChildren()) {
-                    if (child instanceof Button button) {
-                        secondButton++; // esto sirve para no recuperar el primer boton
-                        // sino el segundo que es para remover
-
-                        if (secondButton == 2) {// si lo encontramos
-                            removeToFavorites = button; // igualamos al boton encontrado
-                            break;
-                        }
-                    }
-                }
-
-                // si tenemos el boton
-                if (removeToFavorites != null) {
-                    // final int stateIndex = hboxindex; // establecemos indice
-                    removeToFavorites.setOnAction(event -> {
-                        System.out.println("Ha sido presionado el boton de eliminar de favoritos");
-                    });
-                }
-
-                // transiciones y margenes
-                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), container);
-                fadeTransition.setFromValue(0.0);
-                fadeTransition.setToValue(1.0);
-                fadeTransition.setDelay(Duration.seconds(hboxindex * 0.2));
-
-                VBox.setMargin(container, new Insets(10, 0, 5, 0));
-                main.getChildren().addAll(container);
-                fadeTransition.play();
-            }
+            favoritesLayoutAndLogic(main, favoritesHall, publicationOfHall, disponibilityOfHall, nextHall,
+                    searchHallOfEvent);
         });
 
         // escena
@@ -335,5 +297,38 @@ public class PrincipalInterfaceIU extends Application {
         principalInterfaceStage.setHeight(800);
         principalInterfaceStage.setScene(scene);
         principalInterfaceStage.show();
+    }
+
+    // este es un metodo que nos servira para reutilizar codigo
+    private static void favoritesLayoutAndLogic(VBox main,
+            Button favoritesHall,
+            Button publicationOfHall, // estos son los demas botones de reservar, publicar, etc..
+            Button disponibilityOfHall,
+            Button nextHall,
+            Button searchHallOfEvent) {
+
+        main.setAlignment(Pos.TOP_CENTER); // alineamos al centr0
+        ResetStyleButtons.reset(publicationOfHall, disponibilityOfHall, nextHall, searchHallOfEvent);
+        favoritesHall.getStyleClass().remove("button-desactive");
+        favoritesHall.getStyleClass().add("button-active");
+        main.getChildren().clear(); // limpiamos el main
+
+        // iteramos los diferentes HBox que son los salones que son favoritos por el
+        // usuario
+        for (int hboxindex = 0; hboxindex < FavoritesOfHallIU.getSizeFavoritesHalls(); hboxindex++) {
+            // obtenemos cada uno de los salones favoritos
+            HBox container = (HBox) FavoritesOfHallIU.hallsContainersFavorites().get(hboxindex);
+            container.setOpacity(0); // establecemos opacidad a 0
+
+            // transiciones y margenes
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), container);
+            fadeTransition.setFromValue(0.0);
+            fadeTransition.setToValue(1.0);
+            fadeTransition.setDelay(Duration.seconds(hboxindex * 0.2));
+
+            VBox.setMargin(container, new Insets(10, 0, 5, 0));
+            main.getChildren().addAll(container);
+            fadeTransition.play();
+        }
     }
 }
