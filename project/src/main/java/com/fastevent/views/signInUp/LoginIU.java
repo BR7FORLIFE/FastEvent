@@ -1,6 +1,8 @@
 package com.fastevent.views.signInUp;
 
 import com.fastevent.common.constants.PathConst;
+import com.fastevent.common.constants.StylesConst;
+import com.fastevent.components.NextFrame;
 import com.fastevent.controller.login.LoginController;
 
 import javafx.application.Application;
@@ -13,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -37,10 +40,11 @@ public class LoginIU extends Application {
         ImageView contentImage = new ImageView(image);
 
         // formulario de login
-        Label title = new Label("SIGN UP");
+        Label title = new Label("Iniciar Sesión");
         TextField userField = new TextField();
         PasswordField passwordField = new PasswordField();
         Button loginButton = new Button("Iniciar Sesión");
+        Button registerButton = new Button("Registrarse!");
 
         // redondeo del formulario
         Rectangle clip = new Rectangle(450, 300);
@@ -48,7 +52,12 @@ public class LoginIU extends Application {
         clip.setArcHeight(30);
 
         // contenedores
-        VBox formContent = new VBox(title, userField, passwordField, loginButton);
+        GridPane gridButtons = new GridPane();
+        gridButtons.add(loginButton, 0, 0);
+        gridButtons.add(registerButton, 1, 0);
+        GridPane.setMargin(loginButton, new Insets(0, 20, 0, 125));
+
+        VBox formContent = new VBox(title, userField, passwordField, gridButtons);
         Pane content = new Pane(contentImage, formContent);
         StackPane stackPane = new StackPane();
         stackPane.getChildren().addAll(contentMediaView, content);
@@ -62,16 +71,19 @@ public class LoginIU extends Application {
         passwordField.setMaxSize(250, 40);
         passwordField.setPromptText("Contraseña");
         loginButton.setMinWidth(40);
+        registerButton.setMinWidth(60);
 
         // configuraciones de los contenedores
         contentImage.setFitWidth(500);
         contentImage.setFitHeight(500);
         contentImage.setPreserveRatio(true);
 
-        contentVideo.setAutoPlay(true);
+        contentVideo.setOnReady(() -> {
+            contentVideo.play();
+        });
         contentVideo.setCycleCount(MediaPlayer.INDEFINITE);
-        contentMediaView.fitWidthProperty().bind(scene.widthProperty());
-        contentMediaView.fitHeightProperty().bind(scene.heightProperty());
+        contentMediaView.setFitWidth(1200);
+        contentMediaView.setFitHeight(800);
 
         formContent.setLayoutX(40);
         formContent.setLayoutY(350);
@@ -88,6 +100,7 @@ public class LoginIU extends Application {
         userField.getStyleClass().add("inputForm");
         passwordField.getStyleClass().add("inputForm");
         loginButton.getStyleClass().add("button");
+        registerButton.setStyle(StylesConst.getStyleSelectHall());
 
         // estilos de los contenedores
         content.getStyleClass().add("pane");
@@ -97,7 +110,13 @@ public class LoginIU extends Application {
         scene.getStylesheets().add(pathConst.getLoginCss());
 
         loginButton.setOnAction(e -> {
-            LoginController.credentials(LoginStage,userField,passwordField);
+            LoginController.credentials(LoginStage, userField, passwordField);
+        });
+
+        registerButton.setOnAction(e -> {
+            loginButton.setDisable(true);
+            registerButton.setDisable(true);
+            NextFrame.nextFrameDuration(LoginStage, RegisterIU.class, 1);
         });
 
         // configuracion del stage

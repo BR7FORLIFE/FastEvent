@@ -46,8 +46,10 @@ public class RegisterIU extends Application {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         MediaView mediaView = new MediaView(mediaPlayer);
 
-        mediaPlayer.setAutoPlay(true);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.setOnReady(() -> {
+            mediaPlayer.play();
+        });
 
         mediaView.setPreserveRatio(false);
         mediaView.setFitWidth(1200);
@@ -72,7 +74,7 @@ public class RegisterIU extends Application {
         inputAge.setPromptText("Escribe tu edad");
         inputEmail.setPromptText("Escriba su correo");
         inputCellPhone.setPromptText("Escriba su teléfono");
-        gender.getItems().addAll( "masculino", "femenino");
+        gender.getItems().addAll("masculino", "femenino");
         gender.setValue("masculino");
         inputUser.setPromptText("Escriba un nombre de usuario");
         inputPassword.setPromptText("Escriba una contraseña");
@@ -103,7 +105,6 @@ public class RegisterIU extends Application {
         GridPane.setMargin(buttonRegister, new Insets(0, 0, 0, 40));
         inputsContentBox.setMaxWidth(700);
         inputsContentBox.setMinHeight(200);
-
 
         // VBox del logo
         VBox logoContentBox = new VBox(logo);

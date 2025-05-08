@@ -11,7 +11,8 @@ public class main {
          */
 
         SplashScreen.launch(SplashScreen.class, args);
-        //PrincipalInterfaceIU.launch(PrincipalInterfaceIU.class,args);
-        //RegisterIU.launch(RegisterIU.class, args);
+        // PrincipalInterfaceIU.launch(PrincipalInterfaceIU.class,args);
+        // RegisterIU.launch(RegisterIU.class, args);
+        // LoginIU.launch(LoginIU.class, args);
     }
 }

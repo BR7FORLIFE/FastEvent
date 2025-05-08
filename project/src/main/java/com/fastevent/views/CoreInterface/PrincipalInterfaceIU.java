@@ -64,7 +64,7 @@ public class PrincipalInterfaceIU extends Application {
         for (Node node : new Node[] {
                 searchHallOfEvent, publicationOfHall, disponibilityOfHall, nextHall, favoritesHall
         }) {
-            VBox.setMargin(node, new Insets(0, 0, 50, 0));
+            VBox.setMargin(node, new Insets(0, 0, 35, 0));
         }
 
         // esto es una espeche de for-each donde para cada boton le aplicamos los

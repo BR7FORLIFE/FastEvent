@@ -1,7 +1,9 @@
 package com.fastevent.controller.login;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
+import java.io.IOException;
 
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.exceptions.Exceptions;
@@ -10,8 +12,10 @@ import com.fastevent.components.NextFrame;
 import com.fastevent.views.signInUp.LoginIU;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
@@ -100,22 +104,35 @@ public class RegisterControler {
      */
     private static void registerField(Client client) {
         try {
-            ArrayList<Client> listOfUsers = new ArrayList<>(); // ArrayList para colocarlo en el JsonArray
-            listOfUsers.add(client); // añadimos el cliente que nos viene por parametro
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            JsonArray usersArray;
+
+            // ArrayList para colocarlo en el JsonArray
+            File file = new File(pathConst.getUserJSon());
+            if (file.exists()) {
+                try (FileReader reader = new FileReader(file)) {
+                    JsonObject root = gson.fromJson(reader, JsonObject.class);
+                    usersArray = root.getAsJsonArray("users:");
+                    if (usersArray == null) {
+                        usersArray = new JsonArray();
+                    }
+                }
+            } else {
+                usersArray = new JsonArray();
+            }
+
+            usersArray.add(gson.toJsonTree(client)); // añadimos el cliente que nos viene por parametro
 
             // escribimos el contenido en el fichero con identaciones de json
             try (FileWriter writer = new FileWriter(pathConst.getUserJSon())) {
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                JsonObject root = new JsonObject();
-                JsonElement usersJson = gson.toJsonTree(listOfUsers); // aca convertimos de ArrayList a JsonElement:)
-                root.add("users:", usersJson);
-                gson.toJson(root, writer);
-
+                JsonObject newRoot = new JsonObject();
+                newRoot.add("users:", usersArray);
+                gson.toJson(newRoot, writer);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
 
-        } catch (Exception e) {
+        } catch (JsonIOException | JsonSyntaxException | IOException e) {
             System.out.println(e.getMessage());
         }
     }

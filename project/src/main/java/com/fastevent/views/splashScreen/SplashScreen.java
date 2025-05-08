@@ -2,7 +2,7 @@ package com.fastevent.views.splashScreen;
 
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.components.NextFrame;
-import com.fastevent.views.signInUp.RegisterIU;
+import com.fastevent.views.signInUp.LoginIU;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
@@ -63,13 +63,15 @@ public class SplashScreen extends Application {
         scene.getStylesheets().add(pathConst.getSplashScreenCSs());
 
         // configuracion de nodos y escenas
-        mediaPlayerVideo.setAutoPlay(true);
+        mediaPlayerVideo.setOnReady(() -> {
+            mediaPlayerVideo.play();
+        });
         mediaPlayerVideo.setCycleCount(MediaPlayer.INDEFINITE);
         videoNode.fitWidthProperty().bind(scene.widthProperty());
         videoNode.fitHeightProperty().bind(scene.heightProperty());
         videoNode.setPreserveRatio(false);
 
-        videoStackpane.getChildren().addAll(videoNode,imageFont);
+        videoStackpane.getChildren().addAll(videoNode, imageFont);
         videoStackpane.setMaxWidth(1200);
         videoStackpane.setMaxHeight(800);
 
@@ -80,9 +82,9 @@ public class SplashScreen extends Application {
         imageView.setLayoutX(720);
         imageView.setLayoutY(50);
         imageView.setPreserveRatio(true);
-        imageFont.getChildren().addAll(changeLabel,imageView);
+        imageFont.getChildren().addAll(changeLabel, imageView);
 
-        //clases y estilos de css
+        // clases y estilos de css
         imageFont.getStyleClass().add("imageFont");
         changeLabel.getStyleClass().add("charge");
 
@@ -93,7 +95,7 @@ public class SplashScreen extends Application {
         SplashScreenStage.setResizable(false);
         SplashScreenStage.setScene(scene);
         SplashScreenStage.show();
-        
-        NextFrame.nextFrameDuration(SplashScreenStage, RegisterIU.class, 3);
+
+        NextFrame.nextFrameDuration(SplashScreenStage, LoginIU.class, 3);
     }
 }
