@@ -1,6 +1,7 @@
 package com.fastevent.views.signInUp;
 
 import com.fastevent.common.constants.PathConst;
+import com.fastevent.components.NextFrame;
 import com.fastevent.controller.login.RegisterControler;
 
 import javafx.application.Application;
@@ -52,8 +53,8 @@ public class RegisterIU extends Application {
         });
 
         mediaView.setPreserveRatio(false);
-        mediaView.setFitWidth(1200);
-        mediaView.setFitHeight(800);
+        mediaView.setFitWidth(1180);
+        mediaView.setFitHeight(780);
 
         // Inputs del formulario
         TextField inputName = new TextField();
@@ -67,6 +68,7 @@ public class RegisterIU extends Application {
         PasswordField inputConfirmPassword = new PasswordField();
 
         Button buttonRegister = new Button("Registrarse!");
+        Button back = new Button("Volver");
 
         // Placeholder
         inputName.setPromptText("Escribe tu nombre");
@@ -79,8 +81,8 @@ public class RegisterIU extends Application {
         inputUser.setPromptText("Escriba un nombre de usuario");
         inputPassword.setPromptText("Escriba una contraseña");
         inputConfirmPassword.setPromptText("Confirme su contraseña");
-        gender.setMinWidth(250);
-        inputAge.setMinWidth(250);
+        gender.setMinWidth(170);
+        inputAge.setMinWidth(150);
         inputAge.setEditable(true);
 
         // Contenedor Grid
@@ -95,6 +97,7 @@ public class RegisterIU extends Application {
         inputsContentBox.add(inputPassword, 1, 2);
         inputsContentBox.add(inputConfirmPassword, 2, 2);
         inputsContentBox.add(buttonRegister, 1, 3, 3, 1);
+        inputsContentBox.add(back, 0,3,3,1);
 
         inputsContentBox.setAlignment(Pos.CENTER);
         inputsContentBox.setHgap(40);
@@ -102,7 +105,8 @@ public class RegisterIU extends Application {
         GridPane.setMargin(inputName, new Insets(0, 0, 0, 30));
         GridPane.setMargin(inputEmail, new Insets(0, 0, 0, 30));
         GridPane.setMargin(inputUser, new Insets(0, 0, 0, 30));
-        GridPane.setMargin(buttonRegister, new Insets(0, 0, 0, 40));
+        GridPane.setMargin(buttonRegister, new Insets(0, 0, 0, 18));
+        GridPane.setMargin(back, new Insets(0, 0, 0, 20));
         inputsContentBox.setMaxWidth(700);
         inputsContentBox.setMinHeight(200);
 
@@ -138,6 +142,11 @@ public class RegisterIU extends Application {
         buttonRegister.setOnAction(e -> {
             RegisterControler.setInformationForClassUser(registerStage, inputName, inputLastname, inputAge, inputEmail,
                     inputCellPhone, gender, inputUser, inputPassword, inputConfirmPassword);
+        });
+
+        //evento de regresar atras
+        back.setOnAction(e -> {
+            NextFrame.nextFrameDuration(registerStage, LoginIU.class,  1);
         });
 
         // Configuración del Stage

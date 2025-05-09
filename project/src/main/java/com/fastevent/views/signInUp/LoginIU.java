@@ -82,8 +82,8 @@ public class LoginIU extends Application {
             contentVideo.play();
         });
         contentVideo.setCycleCount(MediaPlayer.INDEFINITE);
-        contentMediaView.setFitWidth(1200);
-        contentMediaView.setFitHeight(800);
+        contentMediaView.setFitWidth(1180);
+        contentMediaView.setFitHeight(780);
 
         formContent.setLayoutX(40);
         formContent.setLayoutY(350);

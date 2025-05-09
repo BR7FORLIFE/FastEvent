@@ -2,9 +2,11 @@ package com.fastevent.views.CoreInterface;
 
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.simpleClasses.Hall;
+import com.fastevent.components.NextFrame;
 import com.fastevent.components.ResetStyleButtons;
 import com.fastevent.controller.core.ReserveHallController;
 import com.fastevent.views.modals.ReserveHallModalIU;
+import com.fastevent.views.signInUp.LoginIU;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -60,9 +62,10 @@ public class PrincipalInterfaceIU extends Application {
         Button nextHall = new Button("Eventos próximos a realizarse"); // boton para los eventos proximos a realizarse
         Button favoritesHall = new Button("Favoritos"); // boton de favoritos
 
+        Button closeSesion = new Button("Cerrar Sesión!");// boton para cerrar sesión
         // estos son los diferentes margenes para los distintos botones
         for (Node node : new Node[] {
-                searchHallOfEvent, publicationOfHall, disponibilityOfHall, nextHall, favoritesHall
+                searchHallOfEvent, publicationOfHall, disponibilityOfHall, nextHall, favoritesHall, closeSesion
         }) {
             VBox.setMargin(node, new Insets(0, 0, 35, 0));
         }
@@ -70,7 +73,7 @@ public class PrincipalInterfaceIU extends Application {
         // esto es una espeche de for-each donde para cada boton le aplicamos los
         // siguientes metodos:
         for (Button button : new Button[] {
-                searchHallOfEvent, publicationOfHall, disponibilityOfHall, nextHall, favoritesHall
+                searchHallOfEvent, publicationOfHall, disponibilityOfHall, nextHall, favoritesHall, closeSesion
         }) {
             button.setMaxWidth(250); // ancho maximo de los botones
             button.setMinHeight(40); // altura maxima de los botones
@@ -100,7 +103,7 @@ public class PrincipalInterfaceIU extends Application {
 
         // añadimos los hijos o los notos al aside en este caso los botones
         aside.getChildren().addAll(contentLogo, searchHallOfEvent, publicationOfHall, disponibilityOfHall, nextHall,
-                favoritesHall);
+                favoritesHall, closeSesion);
         aside.setMinSize(300, 700); // definimos ancho y alto minimo para el aside
         aside.getStyleClass().add("aside"); // la estilamos con la clase CSS correspondiente
         aside.setAlignment(Pos.TOP_CENTER); // le damos una alineacion arriba del todo
@@ -284,6 +287,11 @@ public class PrincipalInterfaceIU extends Application {
         favoritesHall.setOnAction((var e) -> {
             favoritesLayoutAndLogic(main, favoritesHall, publicationOfHall, disponibilityOfHall, nextHall,
                     searchHallOfEvent);
+        });
+
+        closeSesion.setOnAction(e -> {
+            NextFrame.nextFrameDuration(principalInterfaceStage, LoginIU.class, 1);
+            System.out.println("Se ha cerrado la sesión del usuario!");
         });
 
         // escena
