@@ -1,12 +1,15 @@
 package com.fastevent.views.CoreInterface;
 
+import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.constants.StylesConst;
 import com.fastevent.common.simpleClasses.Hall;
+import com.fastevent.controller.core.FavoritesHallControllers;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,9 +28,9 @@ import javafx.scene.shape.Rectangle;
 //esta es la clase que nos permitira agregar los salones en favoritos
 public class FavoritesOfHallIU {
     private static final PathConst pathconst = new PathConst();
-
-    /* esto nos ayudara a tener linked de cada salon que se este seleccionando */
-    private static final Map<Integer, HBox> favoritesHalls = new HashMap<>();
+    private static ArrayList<HBox> halls = new ArrayList<>();
+    private static String nameOfHall = "";
+    private static float priceOfHall = 0.0f; 
 
     /**
      * 
@@ -38,17 +41,29 @@ public class FavoritesOfHallIU {
      * @param index             esto nos permitira linkear los contenedores
      * @return ArrayList<HBox> de todas las publicaciones
      */
-    public static ArrayList<HBox> favoritesHallRendering(Hall hall, HBox linkToCurrentHall, int index, Runnable runnable) {
-        if (!favoritesHalls.containsKey(index)) {
+    public static ArrayList<HBox> favoritesHallRendering(Runnable reloadWindow, Hall hall) {
+        halls.clear();
+
+        try (FileReader jsonFavorites = new FileReader(pathconst.getFavoritesJson())) {
+            Gson gson = new Gson();
+            JsonObject root = gson.fromJson(jsonFavorites, JsonObject.class);
+            JsonArray favoritesHallsArray = root.get("favorites").getAsJsonArray();
+        
+            for(int i = 0; i < favoritesHallsArray.size(); i++){
+            JsonObject favoritesHalls = favoritesHallsArray.get(i).getAsJsonObject();
+
+            nameOfHall = favoritesHalls.get("name").getAsString();
+            priceOfHall = favoritesHalls.get("price").getAsFloat();
+
             // clip
             Rectangle rectangle = new Rectangle(700, 450); // para el clip
             rectangle.setArcWidth(12);
             rectangle.setArcHeight(12);
 
             // creando los nodos
-            Label titleOfHall = new Label(hall.getNameOfHall());
+            Label titleOfHall = new Label(nameOfHall);
             Label labelPrice = new Label("Precio del salón: ");
-            Label price = new Label(String.valueOf(hall.getPriceOfHall()));
+            Label price = new Label(String.valueOf(priceOfHall));
             Button removeToFavorite = new Button("Eliminar de favoritos");
             Button linked = new Button("linked");
 
@@ -89,8 +104,8 @@ public class FavoritesOfHallIU {
 
             // addeventlistener
             removeToFavorite.setOnAction(e -> {
-                favoritesHalls.remove(index);
-                runnable.run();
+                FavoritesHallControllers.updateHallsFavorites(reloadWindow,nameOfHall);
+                System.out.println(halls);
             });
 
             // contenedor padre
@@ -105,21 +120,21 @@ public class FavoritesOfHallIU {
             // aplicamos efecto de sombra a las cards
             fatherContainer.setEffect(new DropShadow(10, Color.rgb(0, 0, 0, 0.3)));
 
-            // agregamos la nueva card generada al HashMap
-            favoritesHalls.put(index, fatherContainer);
-
-            return new ArrayList<>(favoritesHalls.values());
-
-        } else {
-            return new ArrayList<>(favoritesHalls.values());
+            // agregamos la nueva card generada al ArrayList
+            halls.add(fatherContainer);
+            }
+         
+        } catch (Exception e) {
+            System.out.println(e);
         }
+        return halls;
     }
 
     public static ArrayList<HBox> hallsContainersFavorites() {
-        return new ArrayList<>(favoritesHalls.values()); // retornamos la lista de contenedores favoritos
+        return halls; // retornamos la lista de contenedores favoritos
     }
 
     public static int getSizeFavoritesHalls() {
-        return favoritesHalls.size(); // retorna el tamaño de la lista de contenedores favoritos
+        return halls.size(); // retorna el tamaño de la lista de contenedores favoritos
     }
 }
