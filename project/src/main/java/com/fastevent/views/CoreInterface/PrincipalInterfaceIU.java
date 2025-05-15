@@ -1,5 +1,7 @@
 package com.fastevent.views.CoreInterface;
 
+import java.io.FileReader;
+
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.simpleClasses.Hall;
 import com.fastevent.components.NextFrame;
@@ -7,6 +9,9 @@ import com.fastevent.components.ResetStyleButtons;
 import com.fastevent.controller.core.ReserveHallController;
 import com.fastevent.views.modals.ReserveHallModalIU;
 import com.fastevent.views.signInUp.LoginIU;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -137,7 +142,6 @@ public class PrincipalInterfaceIU extends Application {
          */
 
         searchHallOfEvent.setOnAction(e -> {
-
             Runnable refreshIU = () -> {
                 favoritesLayoutAndLogic(main, favoritesHall, publicationOfHall, disponibilityOfHall, nextHall,
                         searchHallOfEvent);
@@ -190,10 +194,11 @@ public class PrincipalInterfaceIU extends Application {
                          * utilizamos el metodo reserveHallController para obtener la informacion
                          * encapsulada del salon actual
                          */
-                        Hall hall = ReserveHallController.getHallById(stateIndex);
+                        Hall hall = ReserveHallController.getHallById(stateIndex); 
+
 
                         /* le pasamos los diferentes parametros a la modal */
-                        ReserveHallModalIU.modal(principalInterfaceStage, hall, container, stateIndex, refreshIU);
+                        ReserveHallModalIU.modal(principalInterfaceStage, hall, stateIndex, refreshIU);
                     });
                 }
                 // aplicamos un efecto de fadeTransition con una duracion de 0.5 y el contedor

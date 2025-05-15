@@ -25,6 +25,7 @@ public class PathConst {
     // archivos
     private String userJSon = "project/src/main/java/com/fastevent/models/users.json";
     private String publicationJson = "project/src/main/java/com/fastevent/models/publications.json";
+    private String favoritesJson = "project/src/main/java/com/fastevent/models/favorites.json";
 
     /**
      * aca tenemos las distintas rutas de los archivos css como el css del
@@ -152,5 +153,9 @@ public class PathConst {
 
     public String getPlusImage() {
         return plusImage;
+    }
+
+    public String getFavoritesJson() {
+        return favoritesJson;
     }
 }

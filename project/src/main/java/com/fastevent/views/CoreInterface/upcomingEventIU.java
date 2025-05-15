@@ -16,7 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-//esta clase es la encargda de mostrar las cards de los eventos proximos a realizarse!
 public class UpcomingEventIU {
     private static final PathConst pathConst = new PathConst();
     private static final ArrayList<HBox> containers = new ArrayList<>();
