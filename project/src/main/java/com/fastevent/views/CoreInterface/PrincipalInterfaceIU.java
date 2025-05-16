@@ -1,7 +1,5 @@
 package com.fastevent.views.CoreInterface;
 
-import java.io.FileReader;
-
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.simpleClasses.Hall;
 import com.fastevent.components.NextFrame;
@@ -9,10 +7,6 @@ import com.fastevent.components.ResetStyleButtons;
 import com.fastevent.controller.core.ReserveHallController;
 import com.fastevent.views.modals.ReserveHallModalIU;
 import com.fastevent.views.signInUp.LoginIU;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -198,7 +192,7 @@ public class PrincipalInterfaceIU extends Application {
 
 
                         /* le pasamos los diferentes parametros a la modal */
-                        ReserveHallModalIU.modal(principalInterfaceStage, hall, stateIndex, refreshIU);
+                        ReserveHallModalIU.modal(principalInterfaceStage, hall, stateIndex, refreshIU, favoritesHall);
                     });
                 }
                 // aplicamos un efecto de fadeTransition con una duracion de 0.5 y el contedor

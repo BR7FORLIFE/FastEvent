@@ -3,8 +3,7 @@ package com.fastevent.views.modals;
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.constants.StylesConst;
 import com.fastevent.common.simpleClasses.Hall;
-import com.fastevent.controller.core.FavoritesHallControllers;
-import com.fastevent.views.CoreInterface.FavoritesOfHallIU;
+import com.fastevent.components.UpdateFavoritesHallComponent;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,7 +18,7 @@ import javafx.stage.Stage;
 public class ReserveHallModalIU {
     private static final PathConst pathConst = new PathConst();
 
-    public static void modal(Stage fatherStage, Hall hall, int index, Runnable reloadWindow) {
+    public static void modal(Stage fatherStage, Hall hall, int index, Runnable reloadWindow, Button favoriteHall) {
         Stage stageModal = new Stage();
         stageModal.initModality(Modality.WINDOW_MODAL);// aca decimos que la modalidad es que sea una modal
         stageModal.initOwner(fatherStage);
@@ -72,13 +71,14 @@ public class ReserveHallModalIU {
 
         //eventos de los botones
         saveToFavorites.setOnAction(e -> {
-            FavoritesHallControllers.readFavorites(hall);
-            FavoritesOfHallIU.favoritesHallRendering(reloadWindow, hall);
+            UpdateFavoritesHallComponent.refresh(reloadWindow, hall, favoriteHall);
+            favoriteHall.fire();
             stageModal.close();
         });
 
         reserve.setOnAction(e -> {
-
+            System.out.println("Se ha reservado el salón de eventos");
+            fatherStage.close();
         });
 
         // estilo de la grilla
