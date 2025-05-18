@@ -7,6 +7,7 @@ import com.fastevent.components.ResetStyleButtons;
 import com.fastevent.controller.core.ReserveHallController;
 import com.fastevent.views.modals.ReserveHallModalIU;
 import com.fastevent.views.signInUp.LoginIU;
+
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -36,7 +37,7 @@ import javafx.util.Duration;
 // eventos actuales y favoritos
 public class PrincipalInterfaceIU extends Application {
     private final PathConst pathConst = new PathConst();
-
+    
     @Override
     public void start(Stage principalInterfaceStage) {
         Rectangle rectangle = new Rectangle(); // creamos un rectangulo esto sera util para algún clip
@@ -135,12 +136,12 @@ public class PrincipalInterfaceIU extends Application {
          * aca vemos las diferentes logicas para los distintos botones
          */
 
-        searchHallOfEvent.setOnAction(e -> {
-            Runnable refreshIU = () -> {
-                favoritesLayoutAndLogic(main, favoritesHall, publicationOfHall, disponibilityOfHall, nextHall,
-                        searchHallOfEvent);
-            };
+        Runnable refreshIU = () -> {
+            favoritesLayoutAndLogic(main, favoritesHall, publicationOfHall, disponibilityOfHall, nextHall,
+                    searchHallOfEvent);
+        };
 
+        searchHallOfEvent.setOnAction(e -> {
             // definimos el evento para el boton de buscar
             main.setAlignment(Pos.TOP_CENTER);// alineamos los elementos del main en lo alto del todo
 
@@ -183,13 +184,13 @@ public class PrincipalInterfaceIU extends Application {
                 // presionó
                 if (selectHall != null) {
                     final int stateIndex = hboxindex;
+                    System.out.println("indice de reservar salones de eventos" + stateIndex);
                     selectHall.setOnAction(event -> {
                         /*
                          * utilizamos el metodo reserveHallController para obtener la informacion
                          * encapsulada del salon actual
                          */
-                        Hall hall = ReserveHallController.getHallById(stateIndex); 
-
+                        Hall hall = ReserveHallController.getHallById(stateIndex);
 
                         /* le pasamos los diferentes parametros a la modal */
                         ReserveHallModalIU.modal(principalInterfaceStage, hall, stateIndex, refreshIU, favoritesHall);
@@ -293,6 +294,8 @@ public class PrincipalInterfaceIU extends Application {
             System.out.println("Se ha cerrado la sesión del usuario!");
         });
 
+        searchHallOfEvent.fire();
+
         // escena
         Scene scene = new Scene(stackPane);
         scene.getStylesheets().add(pathConst.getPrincipalInterfaceCSS()); // hoja de estilos CSS
@@ -307,7 +310,7 @@ public class PrincipalInterfaceIU extends Application {
     }
 
     // este es un metodo que nos servira para reutilizar codigo
-    private static void favoritesLayoutAndLogic(VBox main,
+    private void favoritesLayoutAndLogic(VBox main,
             Button favoritesHall,
             Button publicationOfHall, // estos son los demas botones de reservar, publicar, etc..
             Button disponibilityOfHall,
@@ -322,20 +325,26 @@ public class PrincipalInterfaceIU extends Application {
 
         // iteramos los diferentes HBox que son los salones que son favoritos por el
         // usuario
-        for (int hboxindex = 0; hboxindex < FavoritesOfHallIU.getSizeFavoritesHalls(); hboxindex++) {
-            // obtenemos cada uno de los salones favoritos
-            HBox container = (HBox) FavoritesOfHallIU.hallsContainersFavorites().get(hboxindex);
-            container.setOpacity(0); // establecemos opacidad a 0
+        int sizeFavoritesHall = FavoritesOfHallIU.getSizeFavoritesHalls();
 
-            // transiciones y margenes
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), container);
-            fadeTransition.setFromValue(0.0);
-            fadeTransition.setToValue(1.0);
-            fadeTransition.setDelay(Duration.seconds(hboxindex * 0.2));
+        if (sizeFavoritesHall != 0) {
+            for (int hboxindex = 0; hboxindex < sizeFavoritesHall; hboxindex++) {
+                // obtenemos cada uno de los salones favoritos
+                HBox container = (HBox) FavoritesOfHallIU.hallsContainersFavorites().get(hboxindex);
+                container.setOpacity(0); // establecemos opacidad a 0
 
-            VBox.setMargin(container, new Insets(10, 0, 5, 0));
-            main.getChildren().addAll(container);
-            fadeTransition.play();
+                // transiciones y margenes
+                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), container);
+                fadeTransition.setFromValue(0.0);
+                fadeTransition.setToValue(1.0);
+                fadeTransition.setDelay(Duration.seconds(hboxindex * 0.2));
+
+                VBox.setMargin(container, new Insets(10, 0, 5, 0));
+                main.getChildren().addAll(container);
+                fadeTransition.play();
+            }
+        } else {
+            System.out.println("Por favor presione reservar salon!");
         }
     }
 }
