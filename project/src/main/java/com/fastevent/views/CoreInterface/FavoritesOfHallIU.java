@@ -28,7 +28,7 @@ import javafx.scene.shape.Rectangle;
 //esta es la clase que nos permitira agregar los salones en favoritos
 public class FavoritesOfHallIU {
     private static final PathConst pathconst = new PathConst();
-    private static ArrayList<HBox> halls = new ArrayList<>();
+    private final static ArrayList<HBox> halls = new ArrayList<>();
     private static String nameOfHall = "";
     private static float priceOfHall = 0.0f; 
 

@@ -15,6 +15,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,7 +38,8 @@ import javafx.util.Duration;
 // eventos actuales y favoritos
 public class PrincipalInterfaceIU extends Application {
     private final PathConst pathConst = new PathConst();
-    
+
+    @SuppressWarnings("unchecked")
     @Override
     public void start(Stage principalInterfaceStage) {
         Rectangle rectangle = new Rectangle(); // creamos un rectangulo esto sera util para algún clip
@@ -168,11 +170,16 @@ public class PrincipalInterfaceIU extends Application {
                  * GridPane y otro contenedor.
                  */
                 GridPane childrenGrid = (GridPane) container.getChildren().get(0);
+                ChoiceBox<String> timeZone = null;
                 Button selectHall = null; // esto es para poder obtener el boton en este caso el reservar salon
 
                 for (Node child : childrenGrid.getChildren()) { // como no sabemos que tipo de nodo estamos iterando lo
                                                                 // que hacemos es iterar por la clase padre el cual
                                                                 // heredan todos los nodos
+
+                    if (child instanceof ChoiceBox<?> choiceBox) {
+                        timeZone = (ChoiceBox<String>) choiceBox;
+                    }
                     if (child instanceof Button button) { // aca verificamos que si uno de los nodos es un boton
                                                           // igualamos con la variable que creamos anteriormente
                         selectHall = button;
@@ -182,20 +189,17 @@ public class PrincipalInterfaceIU extends Application {
 
                 // si hay un boton lo que hacemos es recuperar e indice para saber que boton se
                 // presionó
-                if (selectHall != null) {
-                    final int stateIndex = hboxindex;
-                    System.out.println("indice de reservar salones de eventos" + stateIndex);
-                    selectHall.setOnAction(event -> {
-                        /*
-                         * utilizamos el metodo reserveHallController para obtener la informacion
-                         * encapsulada del salon actual
-                         */
-                        Hall hall = ReserveHallController.getHallById(stateIndex);
+                if (selectHall != null && timeZone != null) {
+                    final int stateIndex = hboxindex; //indice del salon de eventos
+                    final ChoiceBox<String> finalTimeZone = timeZone; //lambda
 
-                        /* le pasamos los diferentes parametros a la modal */
-                        ReserveHallModalIU.modal(principalInterfaceStage, hall, stateIndex, refreshIU, favoritesHall);
+                    selectHall.setOnAction(event -> {
+                        Hall hall = ReserveHallController.getHallById(stateIndex);
+                        ReserveHallModalIU.modal(principalInterfaceStage, hall, stateIndex, refreshIU, favoritesHall,
+                                finalTimeZone.getValue());
                     });
                 }
+
                 // aplicamos un efecto de fadeTransition con una duracion de 0.5 y el contedor
                 // el cual queremos aplicarle
                 FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), container);

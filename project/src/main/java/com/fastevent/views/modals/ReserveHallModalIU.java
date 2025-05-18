@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class ReserveHallModalIU {
     private static final PathConst pathConst = new PathConst();
 
-    public static void modal(Stage fatherStage, Hall hall, int index, Runnable reloadWindow, Button favoriteHall) {
+    public static void modal(Stage fatherStage, Hall hall, int index, Runnable reloadWindow, Button favoriteHall, String timeZoneChoiceBox) {
         Stage stageModal = new Stage();
         stageModal.initModality(Modality.WINDOW_MODAL);// aca decimos que la modalidad es que sea una modal
         stageModal.initOwner(fatherStage);
@@ -33,7 +33,7 @@ public class ReserveHallModalIU {
         Label title = new Label(hall.getNameOfHall());
         Label capacity = new Label(String.valueOf("Capacidad: " + hall.getCapacity() + " personas!"));
         Label dimension = new Label(String.valueOf("Dimension: " + hall.getDimension() + " metros cradrados!"));
-        Label timeZone = new Label("Rango Horario: ");
+        Label timeZone = new Label("Rango Horario: " + timeZoneChoiceBox);
         Label price = new Label(String.valueOf("Precio: " + hall.getPriceOfHall() + " COP"));
         Button saveToFavorites = new Button("Guardar en Favoritos");
         Button reserve = new Button("Reservar Salon");
@@ -78,7 +78,7 @@ public class ReserveHallModalIU {
 
         reserve.setOnAction(e -> {
             System.out.println("Se ha reservado el salón de eventos");
-            fatherStage.close();
+            popupWindow.showMessage(stageModal, hall, timeZoneChoiceBox);
         });
 
         // estilo de la grilla
