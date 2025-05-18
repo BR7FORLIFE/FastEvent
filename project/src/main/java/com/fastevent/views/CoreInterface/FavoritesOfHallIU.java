@@ -1,13 +1,11 @@
 package com.fastevent.views.CoreInterface;
 
 import java.io.FileReader;
-import java.text.RuleBasedCollator;
 import java.util.ArrayList;
 
 import com.fastevent.common.constants.PathConst;
 import com.fastevent.common.constants.StylesConst;
 import com.fastevent.common.simpleClasses.Hall;
-import com.fastevent.components.UpdateFavoritesHallComponent;
 import com.fastevent.controller.core.FavoritesHallControllers;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -34,11 +32,6 @@ public class FavoritesOfHallIU {
     private static String nameOfHall = "";
     private static float priceOfHall = 0.0f; 
 
-    //atributos globales para las actualizaciones
-    private static Runnable reloadV;
-    private static Hall hallV;
-    private static Button favoriteHallButton;
-
     /**
      * 
      * @param hall              es la informacion actual del salon que queremos
@@ -50,9 +43,6 @@ public class FavoritesOfHallIU {
      */
     public static ArrayList<HBox> favoritesHallRendering(Runnable reloadWindow, Hall hall, Button favoriteHall) {
         halls.clear();
-        reloadV = reloadWindow;
-        hallV = hall;
-        favoriteHallButton = favoriteHall;
 
         try (FileReader jsonFavorites = new FileReader(pathconst.getFavoritesJson())) {
             Gson gson = new Gson();

@@ -67,7 +67,7 @@ public class FavoritesHallControllers {
                     JsonObject root = gson.fromJson(reader, JsonObject.class);
                     JsonArray favoritesArray = root.get("favorites").getAsJsonArray();
 
-                    // Crear un nuevo arreglo sin el salón que se desea eliminar
+                    // Crear un nuevo arreglo sin el salon que se va a eliminar :D
                     JsonArray updatedArray = new JsonArray();
                     for (int j = 0; j < favoritesArray.size(); j++) {
                         JsonObject obj = favoritesArray.get(j).getAsJsonObject();
@@ -76,7 +76,7 @@ public class FavoritesHallControllers {
                         }
                     }
 
-                    // Reemplazar el array y guardar el archivo
+                    //reemplazar el nuevo array
                     root.add("favorites", updatedArray);
 
                     try (FileWriter writer = new FileWriter(pathConst.getFavoritesJson())) {
